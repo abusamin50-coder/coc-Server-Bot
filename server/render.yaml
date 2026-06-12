@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: coc-bot-panel
+    runtime: python
+    rootDir: server
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --worker-class eventlet -w 1 'app:create_app()'
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.0

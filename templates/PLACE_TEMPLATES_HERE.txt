@@ -1,0 +1,17 @@
+Place the following PNG template files in this folder:
+
+  attack_icon.png       — the sword/attack button on the home screen
+  find_match_btn.png    — the "Find a Match" button
+  attack_btn.png        — the "Attack!" button on the match screen
+  next_btn.png          — the "Next" button to skip a base
+  return_home_btn.png   — the "Return Home" button after battle
+  home_icon.png         — the home village icon (used as backup)
+
+HOW TO CAPTURE TEMPLATES:
+1. Open LDPlayer and start Clash of Clans
+2. Take a screenshot:  adb exec-out screencap -p > full_screen.png
+3. Crop each button using Paint or any image editor
+4. Save as the filenames listed above
+5. Recommended crop size: just the button icon, not the whole screen
+
+Resolution: Make sure LDPlayer is set to 1280x720

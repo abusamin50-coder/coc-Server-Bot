@@ -1,0 +1,40 @@
+adb:
+  adb_path: e:/coc bot/adb_tools/platform-tools/adb.exe
+  connection_timeout: 10
+  device_id: 127.0.0.1:5555
+  port: 5555
+bot:
+  max_next_attempts: 5
+  retry_limit: 5
+  screenshot_timeout: 15
+  template_confidence: 0.35
+delays:
+  after_attack_btn: 1.5
+  after_find_match: 1.5
+  after_tap: 1.5
+  battle_check_interval: 2
+  cycle_end_pause: 2
+  next_base_wait: 1.5
+deploy_zone_image: troop_images\deploy_zone_Screenshot 2026-06-04 151859.png
+emulator:
+  resolution_height: 816
+  resolution_width: 1456
+loot:
+  dark_elixir_priority: false
+  dark_elixir_thresholds:
+  - 0
+  elixir_priority: false
+  elixir_thresholds:
+  - 50000
+  gold_priority: false
+  gold_thresholds:
+  - 50000
+  min_elixir: 50000
+  min_gold: 50000
+troops:
+  custom_troops:
+  - image: troop_images\gg.png
+    name: Gg
+  - image: troop_images\bb.png
+    name: Bb
+  deploy_speed: 0.02

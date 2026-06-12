@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% block title %}Bot Control — CoC Bot{% endblock %}
+
+{% block extra_css %}
+<style>
+  .bot-card { transition: all 0.3s; }
+  .troop-btn { cursor: pointer; user-select: none; }
+  .troop-btn.selected { border-color: #f0a500 !important; background: #2d2d4e !important; }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .status-dot.running { background: #27ae60; box-shadow: 0 0 6px #27ae60; animation: pulse 1.5s infinite; }
+  .status-dot.stopped { background: #7f8c8d; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-3 px-3 px-md-4">
+
+  <!-- Notices -->
+  {% if notices %}
+    {% for notice in notices %}
+      <div class="alert alert-{% if notice.level == 'danger' %}danger{% elif notice.level == 'warning' %}warning{% else %}info{% endif %} py-2 mb-2">
+        <i class="bi bi-{% if notice.level == 'danger' %}exclamation-triangle-fill{% elif notice.level == 'warning' %}exclamation-circle-fill{% else %}info-circle-fill{% endif %} me-2"></i>
+        {{ notice.message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <h5 class="mb-3" style="color:#f0a500;">
+    <i class="bi bi-robot me-2"></i>Bot Control Panel
+  </h5>
+
+  {% if not devices %}
+    <div class="card text-center p-5">
+      <i class="bi bi-phone-fill display-4 text-muted mb-3"></i>
+      <p class="text-muted">কোনো device নেই। Admin এর সাথে যোগাযোগ করো।</p>
+    </div>
+  {% endif %}
+
+  {% for item in devices %}
+  {% set dev = item.device %}
+  {% set cfg = item.config %}
+
+  <div class="card bot-card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center gap-2">
+        <span class="status-dot {% if cfg.bot_running %}running{% else %}stopped{% endif %}" id="dot-{{ dev.id }}"></span>
+        <strong>{{ dev.device_name }}</strong>
+        <small class="text-muted">{{ dev.adb_host }}:{{ dev.adb_port }}</small>
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-success btn-sm" id="start-{{ dev.id }}"
+                onclick="botAction({{ dev.id }}, 'start')"
+                {% if cfg.bot_running %}disabled{% endif %}>
+          <i class="bi bi-play-fill me-1"></i>Start
+        </button>
+        <button class="btn btn-danger btn-sm" id="stop-{{ dev.id }}"
+                onclick="botAction({{ dev.id }}, 'stop')"
+                {% if not cfg.bot_running %}disabled{% endif %}>
+          <i class="bi bi-stop-fill me-1"></i>Stop
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <!-- Attack counter -->
+      <div class="row g-2 mb-3">
+        <div class="col-6 col-md-3">
+          <div class="card text-center p-2">
+            <div class="stat-number" style="font-size:1.5rem;" id="attacks-{{ dev.id }}">{{ cfg.attacks_today }}</div>
+            <div class="text-muted small">আজকের attack</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card text-center p-2">
+            <div class="stat-number" style="font-size:1.5rem; color:#aaa;">{{ cfg.attack_limit }}</div>
+            <div class="text-muted small">Daily limit</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Config form -->
+      <form method="POST" action="{{ url_for('user.update_config', device_id=dev.id) }}">
+
+        <div class="row g-3">
+
+          <!-- Attack limit -->
+          <div class="col-6 col-md-3">
+            <label class="form-label small text-muted">Daily Attack Limit</label>
+            <input type="number" name="attack_limit" class="form-control"
+                   value="{{ cfg.attack_limit }}" min="1" max="500">
+          </div>
+
+          <!-- Deploy speed -->
+          <div class="col-6 col-md-3">
+            <label class="form-label small text-muted">Deploy Speed (sec)</label>
+            <input type="number" name="deploy_speed" class="form-control"
+                   value="{{ cfg.deploy_speed }}" min="0.01" max="2" step="0.01">
+          </div>
+
+          <!-- Loot thresholds -->
+          <div class="col-6 col-md-2">
+            <label class="form-label small text-muted">Min Gold</label>
+            <input type="number" name="min_gold" class="form-control"
+                   value="{{ cfg.min_gold }}" min="0" step="1000">
+          </div>
+
+          <div class="col-6 col-md-2">
+            <label class="form-label small text-muted">Min Elixir</label>
+            <input type="number" name="min_elixir" class="form-control"
+                   value="{{ cfg.min_elixir }}" min="0" step="1000">
+          </div>
+
+          <div class="col-6 col-md-2">
+            <label class="form-label small text-muted">Min Dark</label>
+            <input type="number" name="min_dark" class="form-control"
+                   value="{{ cfg.min_dark }}" min="0" step="100">
+          </div>
+
+        </div>
+
+        <!-- Troop selection -->
+        <div class="mt-3">
+          <label class="form-label small text-muted">Troops</label>
+          <div class="d-flex flex-wrap gap-2">
+            {% set selected_troops = cfg.troops | fromjson %}
+            {% for troop in [
+              ('bb', 'Barbarian', 'bi-person-fill'),
+              ('ar', 'Archer', 'bi-bullseye'),
+              ('gb', 'Giant', 'bi-shield-fill'),
+              ('go', 'Goblin', 'bi-bag-fill'),
+              ('wiz', 'Wizard', 'bi-stars'),
+              ('drag', 'Dragon', 'bi-fire'),
+              ('hog', 'Hog', 'bi-lightning-fill'),
+              ('val', 'Valkyrie', 'bi-sword'),
+              ('art', 'Archers', 'bi-crosshair'),
+              ('gg', 'Giants', 'bi-shield-shaded')
+            ] %}
+            <label class="card troop-btn px-3 py-2 {% if troop[0] in selected_troops %}selected{% endif %}"
+                   style="cursor:pointer; border-color:#2d2d4e;">
+              <input type="checkbox" name="troops" value="{{ troop[0] }}"
+                     class="d-none"
+                     {% if troop[0] in selected_troops %}checked{% endif %}
+                     onchange="this.closest('.troop-btn').classList.toggle('selected', this.checked)">
+              <i class="bi {{ troop[2] }} me-1" style="color:#f0a500;"></i>
+              <span class="small">{{ troop[1] }}</span>
+            </label>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-save me-1"></i>Config সেভ করো
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  {% endfor %}
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+async function botAction(deviceId, action) {
+  const url = `/user/devices/${deviceId}/bot/${action}`;
+  const res = await fetch(url, { method: 'POST' });
+  const data = await res.json();
+
+  if (data.ok) {
+    const running = data.status === 'running';
+    document.getElementById(`dot-${deviceId}`).className = `status-dot ${running ? 'running' : 'stopped'}`;
+    document.getElementById(`start-${deviceId}`).disabled = running;
+    document.getElementById(`stop-${deviceId}`).disabled  = !running;
+  }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,377 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard — CoC Bot{% endblock %}
+
+{% block content %}
+<div class="row">
+
+  <!-- Sidebar -->
+  <div class="col-md-2 sidebar py-3 d-none d-md-block">
+    <nav class="nav flex-column px-2">
+      <a class="nav-link active" href="#users"><i class="bi bi-people me-2"></i>Users</a>
+      <a class="nav-link" href="#notices"><i class="bi bi-bell me-2"></i>Notices</a>
+      <a class="nav-link" href="#banned-ips"><i class="bi bi-shield-x me-2"></i>Banned IPs</a>
+      <a class="nav-link" href="#change-pass"><i class="bi bi-key me-2"></i>My Password</a>
+    </nav>
+  </div>
+
+  <!-- Main content -->
+  <div class="col-md-10 py-3 px-4">
+
+    <!-- Stats -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="card stat-card">
+          <div class="stat-number">{{ users|length }}</div>
+          <div class="text-muted small">Total Users</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card stat-card">
+          <div class="stat-number">{{ total_devices }}</div>
+          <div class="text-muted small">Devices</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card stat-card">
+          <div class="stat-number" style="color:#27ae60;">{{ active_bots }}</div>
+          <div class="text-muted small">Running Bots</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card stat-card">
+          <div class="stat-number" style="color:#e74c3c;">{{ users|selectattr('is_banned')|list|length }}</div>
+          <div class="text-muted small">Banned Users</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Users ─── -->
+    <div class="card mb-4" id="users">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-people me-2"></i>Users</h5>
+        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">
+          <i class="bi bi-person-plus me-1"></i>New User
+        </button>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0" style="color:#e0e0e0;">
+            <thead style="background:#16213e;">
+              <tr>
+                <th>Username</th>
+                <th>Status</th>
+                <th>Devices</th>
+                <th>Created</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+              <tr>
+                <td><i class="bi bi-person-circle me-1 text-muted"></i>{{ user.username }}</td>
+                <td>
+                  {% if user.is_banned %}
+                    <span class="badge bg-danger">Banned</span>
+                  {% else %}
+                    <span class="badge bg-success">Active</span>
+                  {% endif %}
+                </td>
+                <td>{{ user.devices|length }}</td>
+                <td class="text-muted small">{{ user.created_at.strftime('%Y-%m-%d') }}</td>
+                <td>
+                  <div class="d-flex gap-1 flex-wrap">
+                    <!-- Reset Password -->
+                    <button class="btn btn-sm btn-outline-warning"
+                            data-bs-toggle="modal"
+                            data-bs-target="#resetPassModal{{ user.id }}">
+                      <i class="bi bi-key"></i>
+                    </button>
+
+                    <!-- Ban / Unban -->
+                    {% if user.is_banned %}
+                      <form method="POST" action="{{ url_for('admin.unban_user', user_id=user.id) }}" class="d-inline">
+                        <button class="btn btn-sm btn-success" title="Unban">
+                          <i class="bi bi-shield-check"></i>
+                        </button>
+                      </form>
+                    {% else %}
+                      <button class="btn btn-sm btn-danger"
+                              data-bs-toggle="modal"
+                              data-bs-target="#banModal{{ user.id }}">
+                        <i class="bi bi-slash-circle"></i>
+                      </button>
+                    {% endif %}
+
+                    <!-- Delete -->
+                    <form method="POST"
+                          action="{{ url_for('admin.delete_user', user_id=user.id) }}"
+                          onsubmit="return confirm('{{ user.username }} delete করবে?')"
+                          class="d-inline">
+                      <button class="btn btn-sm btn-outline-danger" title="Delete">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              {% else %}
+              <tr><td colspan="5" class="text-center text-muted py-4">কোনো user নেই।</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Notices ─── -->
+    <div class="card mb-4" id="notices">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-bell me-2"></i>Notices (Login page এ দেখাবে)</h5>
+        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addNoticeModal">
+          <i class="bi bi-plus me-1"></i>Add Notice
+        </button>
+      </div>
+      <div class="card-body">
+        {% for notice in notices %}
+        <div class="d-flex justify-content-between align-items-center p-2 mb-2 rounded notice-{{ notice.level }}"
+             style="background:#0f0f1a;">
+          <div>
+            <span class="badge bg-{% if notice.level == 'danger' %}danger{% elif notice.level == 'warning' %}warning text-dark{% else %}info{% endif %} me-2">
+              {{ notice.level }}
+            </span>
+            {{ notice.message }}
+            {% if not notice.is_active %}
+              <span class="badge bg-secondary ms-1">Hidden</span>
+            {% endif %}
+          </div>
+          <div class="d-flex gap-1">
+            <form method="POST" action="{{ url_for('admin.toggle_notice', notice_id=notice.id) }}" class="d-inline">
+              <button class="btn btn-sm btn-outline-secondary" title="Toggle">
+                <i class="bi bi-eye{% if not notice.is_active %}-slash{% endif %}"></i>
+              </button>
+            </form>
+            <form method="POST" action="{{ url_for('admin.delete_notice', notice_id=notice.id) }}" class="d-inline">
+              <button class="btn btn-sm btn-outline-danger" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        {% else %}
+          <p class="text-muted text-center mb-0">কোনো notice নেই।</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- ─── Banned IPs ─── -->
+    <div class="card mb-4" id="banned-ips">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-shield-x me-2"></i>Banned IPs</h5>
+        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#banIPModal">
+          <i class="bi bi-plus me-1"></i>Ban IP
+        </button>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table mb-0" style="color:#e0e0e0;">
+            <thead style="background:#16213e;">
+              <tr><th>IP</th><th>Reason</th><th>Banned At</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              {% for ban in banned_ips %}
+              <tr>
+                <td><code style="color:#f0a500;">{{ ban.ip_address }}</code></td>
+                <td class="text-muted small">{{ ban.reason or '—' }}</td>
+                <td class="text-muted small">{{ ban.banned_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>
+                  <form method="POST" action="{{ url_for('admin.unban_ip', ban_id=ban.id) }}" class="d-inline">
+                    <button class="btn btn-sm btn-success">Unban</button>
+                  </form>
+                </td>
+              </tr>
+              {% else %}
+              <tr><td colspan="4" class="text-center text-muted py-3">কোনো banned IP নেই।</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Change Admin Password ─── -->
+    <div class="card mb-4" id="change-pass">
+      <div class="card-header">
+        <h5 class="mb-0"><i class="bi bi-key me-2"></i>Admin Password পরিবর্তন</h5>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{ url_for('admin.change_password') }}" class="row g-3">
+          <div class="col-md-4">
+            <input type="password" name="new_password" class="form-control"
+                   placeholder="নতুন password" required>
+          </div>
+          <div class="col-md-4">
+            <input type="password" name="confirm_password" class="form-control"
+                   placeholder="আবার দাও" required>
+          </div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-warning w-100">
+              <i class="bi bi-check-lg me-1"></i>Password Change করো
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ Modals ═══ -->
+
+<!-- Add User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background:#1a1a2e; color:#e0e0e0;">
+      <div class="modal-header" style="border-color:#2d2d4e;">
+        <h5 class="modal-title">নতুন User তৈরি</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <form method="POST" action="{{ url_for('admin.add_user') }}">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" name="username" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="text" name="password" class="form-control" required>
+            <small class="text-muted">User এর initial password — পরে admin change করতে পারবে।</small>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-color:#2d2d4e;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+          <button type="submit" class="btn btn-primary">তৈরি করো</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Add Notice Modal -->
+<div class="modal fade" id="addNoticeModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background:#1a1a2e; color:#e0e0e0;">
+      <div class="modal-header" style="border-color:#2d2d4e;">
+        <h5 class="modal-title">নতুন Notice</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <form method="POST" action="{{ url_for('admin.add_notice') }}">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea name="message" class="form-control" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Type</label>
+            <select name="level" class="form-select">
+              <option value="info">Info (নীল)</option>
+              <option value="warning">Warning (হলুদ)</option>
+              <option value="danger">Danger (লাল)</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer" style="border-color:#2d2d4e;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+          <button type="submit" class="btn btn-primary">Add করো</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Ban IP Modal -->
+<div class="modal fade" id="banIPModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background:#1a1a2e; color:#e0e0e0;">
+      <div class="modal-header" style="border-color:#2d2d4e;">
+        <h5 class="modal-title">IP Ban করো</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <form method="POST" action="{{ url_for('admin.ban_ip') }}">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">IP Address</label>
+            <input type="text" name="ip_address" class="form-control" placeholder="192.168.1.x" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Reason (optional)</label>
+            <input type="text" name="reason" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer" style="border-color:#2d2d4e;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+          <button type="submit" class="btn btn-danger">Ban করো</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Per-user Reset Password & Ban Modals -->
+{% for user in users %}
+
+<div class="modal fade" id="resetPassModal{{ user.id }}" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background:#1a1a2e; color:#e0e0e0;">
+      <div class="modal-header" style="border-color:#2d2d4e;">
+        <h5 class="modal-title">{{ user.username }} এর Password Reset</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <form method="POST" action="{{ url_for('admin.reset_password', user_id=user.id) }}">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">নতুন Password</label>
+            <input type="text" name="new_password" class="form-control" required>
+          </div>
+          <small class="text-warning">
+            <i class="bi bi-exclamation-triangle me-1"></i>
+            Password change হলে user এর সব active session logout হবে।
+          </small>
+        </div>
+        <div class="modal-footer" style="border-color:#2d2d4e;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+          <button type="submit" class="btn btn-warning">Reset করো</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="banModal{{ user.id }}" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background:#1a1a2e; color:#e0e0e0;">
+      <div class="modal-header" style="border-color:#2d2d4e;">
+        <h5 class="modal-title">{{ user.username }} Ban করো</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <form method="POST" action="{{ url_for('admin.ban_user', user_id=user.id) }}">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Reason (optional)</label>
+            <input type="text" name="reason" class="form-control" placeholder="কেন ban করছো?">
+          </div>
+          <small class="text-danger">
+            <i class="bi bi-exclamation-triangle me-1"></i>
+            Ban করলে সব active session kill হবে এবং device IP ও block হবে।
+          </small>
+        </div>
+        <div class="modal-footer" style="border-color:#2d2d4e;">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বাতিল</button>
+          <button type="submit" class="btn btn-danger">Ban করো</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{% endblock %}

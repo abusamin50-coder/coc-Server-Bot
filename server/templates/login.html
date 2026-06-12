@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Login — CoC Bot{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-5 col-lg-4">
+
+    <!-- Notices -->
+    {% if notices %}
+      {% for notice in notices %}
+        <div class="alert notice-{{ notice.level }} mb-3 p-3" style="background:#1a1a2e; border-radius:8px;">
+          <i class="bi bi-{% if notice.level == 'danger' %}exclamation-triangle-fill{% elif notice.level == 'warning' %}exclamation-circle-fill{% else %}info-circle-fill{% endif %} me-2"></i>
+          {{ notice.message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="card shadow-lg">
+      <div class="card-header text-center py-4">
+        <h4 class="mb-0" style="color:#f0a500;">
+          <i class="bi bi-robot me-2"></i>CoC Bot Login
+        </h4>
+      </div>
+      <div class="card-body p-4">
+
+        {% if error %}
+          <div class="alert alert-danger py-2">
+            <i class="bi bi-x-circle me-1"></i> {{ error }}
+          </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('auth.login') }}" autocomplete="off">
+          <div class="mb-3">
+            <label class="form-label text-muted small">Username</label>
+            <div class="input-group">
+              <span class="input-group-text" style="background:#1a1a2e; border-color:#2d2d4e; color:#aaa;">
+                <i class="bi bi-person"></i>
+              </span>
+              <input type="text" name="username" class="form-control"
+                     placeholder="Username দাও" required autofocus>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label text-muted small">Password</label>
+            <div class="input-group">
+              <span class="input-group-text" style="background:#1a1a2e; border-color:#2d2d4e; color:#aaa;">
+                <i class="bi bi-lock"></i>
+              </span>
+              <input type="password" name="password" class="form-control"
+                     placeholder="Password দাও" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 py-2">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+          </button>
+        </form>
+
+        <div class="text-center mt-3">
+          <small class="text-muted">
+            Account নেই? Admin এর সাথে যোগাযোগ করো।
+          </small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
