@@ -25,12 +25,12 @@ loot:
   - 0
   elixir_priority: false
   elixir_thresholds:
-  - 30000
+  - 300000
   gold_priority: false
   gold_thresholds:
-  - 20000
-  min_elixir: 30000
-  min_gold: 20000
+  - 200000
+  min_elixir: 300000
+  min_gold: 200000
 troops:
   custom_troops:
   - image: troop_images\gg.png

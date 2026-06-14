@@ -349,8 +349,11 @@ class CoCBot:
                     self._cancel_search()
                     return False
 
+        # self._log(f"  No match after {self.max_next + 1} attempts", "warning")
+        # self._cancel_search()
+        # return False
         self._log(f"  No match after {self.max_next + 1} attempts", "warning")
-        self._cancel_search()
+        self._click_end_battle()
         return False
 
     def _tap_next_and_load(self) -> bool:
@@ -368,44 +371,51 @@ class CoCBot:
         self._last_ocr = (0, 0, 0)
         return True
 
+    # def _click_end_battle(self):
+    #     """End Battle button click করে home village এ ফিরে যাও।"""
+    #     if self.should_stop:
+    #         return
+    #     self._log("  Clicking End Battle button…", "warning")
+    #     x, y = self._find_button("end_battle_btn", [0.70, 0.60, 0.50, 0.40, 0.35])
+    #     if x is not None:
+    #         self._tap(x, y)
+    #         self._sleep(1.0)
+    #         # Confirm popup আসতে পারে — আবার End Battle বা OK খুঁজো
+    #         for tmpl in ["end_battle_btn", "return_home_btn", "home_icon"]:
+    #             cx, cy = self._find_button(tmpl, [0.60, 0.50, 0.40, 0.35])
+    #             if cx is not None:
+    #                 self._tap(cx, cy)
+    #                 break
+    #         self._wait_until_visible("attack_icon", timeout=20)
+    #         self._log("  Home screen reached after End Battle")
+    #     else:
+    #         self._log("  End Battle button not found — trying cancel", "warning")
+    #         self._cancel_search()
+
     def _click_end_battle(self):
         """End Battle button click করে home village এ ফিরে যাও।"""
         if self.should_stop:
             return
-        self._log("  Clicking End Battle button…", "warning")
-        x, y = self._find_button("end_battle_btn", [0.70, 0.60, 0.50, 0.40, 0.35])
-        if x is not None:
-            self._tap(x, y)
-            self._sleep(1.0)
-            # Confirm popup আসতে পারে — আবার End Battle বা OK খুঁজো
-            for tmpl in ["end_battle_btn", "return_home_btn", "home_icon"]:
-                cx, cy = self._find_button(tmpl, [0.60, 0.50, 0.40, 0.35])
-                if cx is not None:
-                    self._tap(cx, cy)
-                    break
-            self._wait_until_visible("attack_icon", timeout=20)
-            self._log("  Home screen reached after End Battle")
-        else:
-            self._log("  End Battle button not found — trying cancel", "warning")
-            self._cancel_search()
 
-    def _cancel_search(self):
-        """Cancel opponent search and return to home screen."""
-        if self.should_stop:
+        self._log("  Looking for End Battle button…", "warning")
+        x, y = self._find_button( "end_battle_btn",[0.70, 0.60, 0.50, 0.40, 0.35] )
+
+        if x is None:
+            self._log("  End Battle button not found", "warning")
             return
-        self._log("  Cancelling — looking for return/home button…", "warning")
 
-        # Try the cancel / return home button on opponent screen
-        for tmpl in ["return_home_btn", "home_icon"]:
-            x, y = self._find_button(tmpl, [0.60, 0.50, 0.40, 0.30])
-            if x is not None:
-                self._tap(x, y)
-                self._log(f"  Tapped '{tmpl}' to go home")
-                self._wait_until_visible("attack_icon", timeout=20)
-                return
+        self._tap(x, y)
+        self._log("  End Battle clicked", "warning")
 
-        self._log("  Could not find cancel button", "warning")
+        # 7 seconds wait
+        self._sleep(7)
 
+        self._log("  Waiting for Home Village...", "info")
+
+        if self._wait_until_visible("attack_icon", timeout=30):
+            self._log("  Home Village detected", "success")
+        else:
+            self._log("  Home Village not detected", "warning")
     # ════════════════════════════════════════════════════════════════════════
     #  STEP 4: Deploy all troops
     # ════════════════════════════════════════════════════════════════════════
