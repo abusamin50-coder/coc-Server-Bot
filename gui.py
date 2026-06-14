@@ -9,7 +9,7 @@ import threading
 import time
 from pathlib import Path
 from queue import Queue, Empty
-from tkinter import filedialog
+from tkinter import filedialog, messagebox
 
 import customtkinter as ctk
 from PIL import Image
@@ -83,6 +83,80 @@ class BotGUI:
     # ── Control tab ──────────────────────────────────────────────────────────
 
     def _build_control_tab(self, tab):
+        # ── ADB Connection Section ────────────────────────────────────────────
+        adb_card = ctk.CTkFrame(tab, fg_color="#1e293b", corner_radius=10)
+        adb_card.pack(fill="x", padx=10, pady=(10, 4))
+
+        ctk.CTkLabel(
+            adb_card,
+            text="ADB Connection",
+            font=("Arial", 12, "bold"),
+            text_color="#f59e0b",
+        ).pack(anchor="w", padx=12, pady=(8, 4))
+
+        # Device info row
+        dev_row = ctk.CTkFrame(adb_card, fg_color="transparent")
+        dev_row.pack(fill="x", padx=10, pady=4)
+
+        ctk.CTkLabel(dev_row, text="Device:", font=("Arial", 10)).pack(side="left", padx=4)
+        self._adb_device_var = ctk.StringVar(value="Not connected")
+        ctk.CTkLabel(
+            dev_row,
+            textvariable=self._adb_device_var,
+            font=("Arial", 10, "bold"),
+            text_color="#94a3b8",
+        ).pack(side="left", padx=4)
+
+        # Connection status
+        self._adb_status_dot = ctk.CTkLabel(
+            dev_row,
+            text="● Disconnected",
+            font=("Arial", 10),
+            text_color="#ef4444",
+        )
+        self._adb_status_dot.pack(side="right", padx=4)
+
+        # Buttons row
+        btn_row = ctk.CTkFrame(adb_card, fg_color="transparent")
+        btn_row.pack(fill="x", padx=10, pady=(4, 8))
+
+        self._adb_connect_btn = ctk.CTkButton(
+            btn_row,
+            text="Auto Connect LDPlayer",
+            font=("Arial", 10, "bold"),
+            height=32,
+            width=160,
+            fg_color="#10b981",
+            hover_color="#059669",
+            command=self._adb_auto_connect,
+        )
+        self._adb_connect_btn.pack(side="left", padx=4)
+
+        self._adb_disconnect_btn = ctk.CTkButton(
+            btn_row,
+            text="Disconnect",
+            font=("Arial", 10, "bold"),
+            height=32,
+            width=100,
+            fg_color="#ef4444",
+            hover_color="#dc2626",
+            state="disabled",
+            command=self._adb_disconnect,
+        )
+        self._adb_disconnect_btn.pack(side="left", padx=4)
+
+        ctk.CTkButton(
+            btn_row,
+            text="Refresh",
+            font=("Arial", 10),
+            height=32,
+            width=80,
+            fg_color="#3b82f6",
+            hover_color="#2563eb",
+            command=self._adb_refresh,
+        ).pack(side="left", padx=4)
+
+        # ── Bot Control Section ───────────────────────────────────────────────
         top = ctk.CTkFrame(tab, fg_color="#1e293b", corner_radius=10)
         top.pack(fill="x", padx=10, pady=10)
 
@@ -119,7 +193,7 @@ class BotGUI:
         self.log_box.pack(fill="both", expand=True, padx=8, pady=(0, 8))
         self.log_box.configure(state="disabled")
 
-        self._log("Bot ready. Configure Loot & Troops then press START.")
+        self._log("Bot ready. Configure ADB connection, Loot & Troops then press START.")
 
     # ── Loot tab ─────────────────────────────────────────────────────────────
 
@@ -530,6 +604,87 @@ class BotGUI:
         self.status_dot.configure(text="● Stopped", text_color="#94a3b8")
         self.status_msg.configure(text="Press START to begin farming")
         self._log("Bot stopped")
+
+    # ── ADB Connection ─────────────────────────────────────────────────────────
+
+    def _adb_auto_connect(self):
+        """Auto-connect to LDPlayer ADB (kills terminals and connects)."""
+        if self.running:
+            self._log("Bot is running. Stop it first.", "warning")
+            return
+
+        self._log("Connecting to LDPlayer...")
+        self._adb_connect_btn.configure(state="disabled")
+        self._adb_disconnect_btn.configure(state="disabled")
+
+        def _do_connect():
+            try:
+                adb_cfg = self.config.get("adb", {})
+                self.adb = ADBController(
+                    device_id="127.0.0.1:5555",
+                    adb_port=5555,
+                    adb_path=adb_cfg.get("adb_path"),
+                )
+
+                # Auto-connect to LDPlayer
+                if self.adb.auto_connect_ldplayer():
+                    self._log(f"Connected to {self.adb.device_id}", "success")
+                    self._adb_device_var.set(self.adb.device_id)
+                    self._adb_status_dot.configure(text="● Connected", text_color="#22c55e")
+
+                    # Update config
+                    adb_cfg["device_id"] = self.adb.device_id
+                    adb_cfg["port"] = self.adb.adb_port
+                    self.config["adb"] = adb_cfg
+                    save_config(self.config, CONFIG_FILE)
+
+                    self._adb_connect_btn.configure(state="normal")
+                    self._adb_disconnect_btn.configure(state="normal")
+                else:
+                    self._log("Failed to connect to LDPlayer. Is it running?", "error")
+                    self._adb_device_var.set("Connection failed")
+                    self._adb_status_dot.configure(text="● Failed", text_color="#ef4444")
+                    self._adb_connect_btn.configure(state="normal")
+                    self._adb_disconnect_btn.configure(state="disabled")
+
+            except Exception as e:
+                self._log(f"Connection error: {e}", "error")
+                self._adb_connect_btn.configure(state="normal")
+                self._adb_disconnect_btn.configure(state="disabled")
+
+        thread = threading.Thread(target=_do_connect, daemon=True)
+        thread.start()
+
+    def _adb_disconnect(self):
+        """Disconnect from ADB."""
+        try:
+            if self.adb:
+                self.adb.disconnect()
+            self._adb_device_var.set("Disconnected")
+            self._adb_status_dot.configure(text="● Disconnected", text_color="#ef4444")
+            self._adb_connect_btn.configure(state="normal")
+            self._adb_disconnect_btn.configure(state="disabled")
+            self._log("Disconnected from ADB")
+        except Exception as e:
+            self._log(f"Disconnect error: {e}", "error")
+
+    def _adb_refresh(self):
+        """Check current ADB connection status."""
+        try:
+            if self.adb and self.adb.verify_device_connected():
+                self._adb_device_var.set(self.adb.device_id)
+                self._adb_status_dot.configure(text="● Connected", text_color="#22c55e")
+                self._adb_connect_btn.configure(state="normal")
+                self._adb_disconnect_btn.configure(state="normal")
+                self._log("ADB connected")
+            else:
+                self._adb_device_var.set("Not connected")
+                self._adb_status_dot.configure(text="● Disconnected", text_color="#ef4444")
+                self._adb_connect_btn.configure(state="normal")
+                self._adb_disconnect_btn.configure(state="disabled")
+                self._log("ADB disconnected")
+        except Exception as e:
+            self._log(f"Refresh error: {e}", "error")
 
     # ── Stats ─────────────────────────────────────────────────────────────────
 

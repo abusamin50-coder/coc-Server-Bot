@@ -3,6 +3,7 @@
 import subprocess
 import os
 import time
+import psutil
 from pathlib import Path
 
 import cv2
@@ -11,7 +12,7 @@ from loguru import logger
 
 
 class ADBController:
-    def __init__(self, device_id: str = "127.0.0.1:5555", adb_port: int = 5555, adb_path: str = None):
+    def __init__(self, device_id: str = "127.0.0.1:5555", adb_port: int = 5555, adb_path: str | None = None):
         self.device_id = device_id
         self.adb_port = adb_port
         self.adb_exe = self._resolve_adb(adb_path)
@@ -19,7 +20,7 @@ class ADBController:
 
     # ─────────────────────────── ADB discovery ────────────────────────────────
 
-    def _resolve_adb(self, explicit: str) -> str:
+    def _resolve_adb(self, explicit: str | None) -> str:
         candidates = []
 
         if explicit:
@@ -70,6 +71,94 @@ class ADBController:
             logger.error(f"ADB executable not found at: {self.adb_exe}")
         except Exception as e:
             logger.error(f"ADB check error: {e}")
+
+    # ─────────────────────────── Terminal Cleanup ──────────────────────────────
+
+    def kill_all_terminals(self) -> bool:
+        """Kill all cmd.exe, powershell, and adb processes. Returns True if successful."""
+        try:
+            processes_to_kill = ["cmd.exe", "powershell.exe", "adb.exe", "LDPlayer.exe"]
+            killed_count = 0
+            
+            for proc in psutil.process_iter(['pid', 'name']):
+                try:
+                    if proc.info['name'].lower() in [p.lower() for p in processes_to_kill]:
+                        proc.terminate()
+                        killed_count += 1
+                        logger.debug(f"Terminated: {proc.info['name']} (PID: {proc.info['pid']})")
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    pass
+            
+            time.sleep(1)  # Allow processes to terminate
+            
+            if killed_count > 0:
+                logger.info(f"Killed {killed_count} terminal/ADB processes")
+            return True
+        except Exception as e:
+            logger.warning(f"Kill terminals error: {e}")
+            return True  # Continue anyway
+
+    def find_ldplayer_adb(self) -> tuple[str, int] | None | None:
+        """Detect LDPlayer emulator ADB host:port. Returns (host, port) or None."""
+        common_ports = [5555, 5554, 5037, 16384, 16416]
+        common_ips = ["127.0.0.1", "localhost", "192.168.1.1"]
+        
+        for ip in common_ips:
+            for port in common_ports:
+                try:
+                    r = subprocess.run(
+                        [self.adb_exe, "connect", f"{ip}:{port}"],
+                        capture_output=True, timeout=3, text=True
+                    )
+                    time.sleep(0.5)
+                    
+                    # Check if connected
+                    r2 = subprocess.run(
+                        [self.adb_exe, "devices"], capture_output=True, timeout=3, text=True
+                    )
+                    if f"{ip}:{port}" in r2.stdout and "device" in r2.stdout:
+                        logger.info(f"Found LDPlayer at {ip}:{port}")
+                        return (ip, port)
+                except Exception:
+                    pass
+        
+        return None
+
+    def auto_connect_ldplayer(self) -> bool:
+        """Kill terminals, find LDPlayer ADB, and connect. Returns True if successful."""
+        try:
+            logger.info("Starting auto-connect to LDPlayer...")
+            
+            # Step 1: Kill existing terminals
+            logger.info("Cleaning up existing processes...")
+            self.kill_all_terminals()
+            time.sleep(2)
+            
+            # Step 2: Start ADB server
+            logger.info("Starting ADB server...")
+            try:
+                subprocess.run([self.adb_exe, "start-server"], capture_output=True, timeout=5)
+                time.sleep(1)
+            except Exception as e:
+                logger.warning(f"ADB start-server: {e}")
+            
+            # Step 3: Try to find LDPlayer
+            logger.info("Scanning for LDPlayer emulator...")
+            result = self.find_ldplayer_adb()
+            
+            if result:
+                host, port = result
+                self.device_id = f"{host}:{port}"
+                self.adb_port = port
+                logger.info(f"Auto-connected to {self.device_id}")
+                return True
+            else:
+                logger.error("Could not find LDPlayer ADB. Make sure LDPlayer is running.")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Auto-connect error: {e}")
+            return False
 
     # ─────────────────────────── Connection ───────────────────────────────────
 
@@ -198,7 +287,7 @@ class ADBController:
             logger.error(f"Screenshot error: {e}")
             return False
 
-    def screenshot_np(self) -> np.ndarray:
+    def screenshot_np(self) -> np.ndarray | None:
         """Capture screenshot directly into memory as numpy array."""
         try:
             r = subprocess.run(

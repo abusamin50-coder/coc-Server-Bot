@@ -15,7 +15,7 @@ delays:
   battle_check_interval: 2
   cycle_end_pause: 2
   next_base_wait: 1.5
-deploy_zone_image: troop_images\deploy_zone_Screenshot 2026-06-04 151859.png
+deploy_zone_image: troop_images\deploy_zone_Screenshot 2026-06-14 193932.png
 emulator:
   resolution_height: 816
   resolution_width: 1456
@@ -25,16 +25,20 @@ loot:
   - 0
   elixir_priority: false
   elixir_thresholds:
-  - 50000
+  - 30000
   gold_priority: false
   gold_thresholds:
-  - 50000
-  min_elixir: 50000
-  min_gold: 50000
+  - 20000
+  min_elixir: 30000
+  min_gold: 20000
 troops:
   custom_troops:
   - image: troop_images\gg.png
     name: Gg
+  - image: troop_images\Screenshot 2026-06-13 125554.png
+    name: bb
   - image: troop_images\bb.png
     name: Bb
+  - image: troop_images\Screenshot 2026-06-13 125601.png
+    name: arc
   deploy_speed: 0.02
