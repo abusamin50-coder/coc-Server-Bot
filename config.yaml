@@ -23,22 +23,18 @@ loot:
   dark_elixir_priority: false
   dark_elixir_thresholds:
   - 0
-  elixir_priority: false
+  elixir_priority: true
   elixir_thresholds:
-  - 300000
+  - 100000
   gold_priority: false
   gold_thresholds:
-  - 200000
-  min_elixir: 300000
-  min_gold: 200000
+  - 100000
+  min_elixir: 100000
+  min_gold: 100000
 troops:
   custom_troops:
-  - image: troop_images\gg.png
-    name: Gg
-  - image: troop_images\Screenshot 2026-06-13 125554.png
-    name: bb
-  - image: troop_images\bb.png
-    name: Bb
+  - image: troop_images\Screenshot 2026-06-15 111227.png
+    name: Screenshot 2026 06 15 111227
   - image: troop_images\Screenshot 2026-06-13 125601.png
-    name: arc
+    name: Screenshot 2026 06 13 125601
   deploy_speed: 0.02
