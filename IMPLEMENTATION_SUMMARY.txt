@@ -150,12 +150,11 @@ Updated:
   ✅ server/requirements.txt
     - flask==3.0.0
     - flask-sqlalchemy==3.1.1
-    - flask-socketio==5.3.6
     - werkzeug==3.0.1
-    - gunicorn==21.2.0
-    - eventlet==0.33.3
-    - python-dotenv==1.0.0 (NEW)
-    - loguru==0.7.2 (NEW)
+    - gunicorn==22.0.0
+    - python-dotenv==1.0.0
+    - loguru==0.7.2
+    (REMOVED: flask-socketio, eventlet - using sync worker instead)
 
   ✅ requirements.txt (unchanged - complete)
     - All bot dependencies present

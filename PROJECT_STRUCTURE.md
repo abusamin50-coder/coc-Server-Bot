@@ -126,15 +126,13 @@ server/
 │   ├── requirements.txt            Server dependencies (Updated)
 │   │   - flask==3.0.0
 │   │   - flask-sqlalchemy==3.1.1
-│   │   - flask-socketio==5.3.6
 │   │   - werkzeug==3.0.1
-│   │   - gunicorn==21.2.0
-│   │   - eventlet==0.33.3
-│   │   - python-dotenv==1.0.0 (NEW)
-│   │   - loguru==0.7.2 (NEW)
+│   │   - gunicorn==22.0.0 (sync worker)
+│   │   - python-dotenv==1.0.0
+│   │   - loguru==0.7.2
 │   │
 │   ├── Procfile                    Render start command (Updated)
-│   │   - cd server && gunicorn --worker-class eventlet -w 1 'wsgi:app'
+│   │   - gunicorn --worker-class sync -w 2 --timeout 60 'wsgi:app'
 │   │
 │   └── render.yaml                 Render manifest (Updated)
 │       - Service config

@@ -226,8 +226,8 @@ http://localhost:5000
 ## Performance Considerations
 
 - SQLite for local dev (upgrade to PostgreSQL on Render if needed)
-- Eventlet for async support
-- One gunicorn worker (sufficient for single-server)
+- Gunicorn sync worker (stable, no async overhead)
+- 2 worker processes with 60s timeout
 - Session-based authentication (no JWT overhead)
 - Minimal database queries (efficient relationships)
 

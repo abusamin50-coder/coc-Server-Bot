@@ -61,7 +61,7 @@ DATABASE_URL=sqlite:///coc_bot.db
     
     print("\n2. Start server:")
     print("   cd server")
-    print(f"   {venv_python} -c \"from app import create_app; from flask_socketio import SocketIO; app = create_app(); SocketIO(app).run(app, host='0.0.0.0', port=5000)\"")
+    print(f"   {venv_python} -c \"from app import create_app; app = create_app(); print('🚀 Server running at http://localhost:5000'); app.run(host='0.0.0.0', port=5000, debug=True)\"")
     
     print("\n3. Open browser:")
     print("   http://localhost:5000")
