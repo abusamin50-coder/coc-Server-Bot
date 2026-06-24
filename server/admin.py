@@ -4,8 +4,9 @@ import json
 from datetime import datetime
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash, jsonify
 from werkzeug.security import generate_password_hash
-from models import db, User, Device, DeviceConfig, BannedIP, Notice
+from models import db, User, Device, DeviceConfig, BannedIP, Notice, AuditLog
 from auth import admin_required, get_client_ip
+from session_manager import SessionManager
 
 admin_bp = Blueprint("admin", __name__)
 
@@ -238,9 +239,12 @@ def change_password():
     admin.session_version += 1
     db.session.commit()
 
+    # সব user দের session invalidate করা
+    SessionManager.invalidate_all_sessions()
+
     # নিজের session update
     session["session_version"] = admin.session_version
-    flash("Admin password পরিবর্তন হয়েছে।", "success")
+    flash("Admin password পরিবর্তন হয়েছে। সব user logout হয়েছে।", "success")
     return redirect(url_for("admin.dashboard"))
 
 

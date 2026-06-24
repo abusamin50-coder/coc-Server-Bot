@@ -10,6 +10,7 @@ from models import db
 from auth import auth_bp
 from admin import admin_bp
 from user import user_bp
+from session_manager import SessionManager
 
 socketio = SocketIO()
 
@@ -37,6 +38,7 @@ def create_app():
     with app.app_context():
         db.create_all()
         _create_default_admin()
+        SessionManager.initialize()
 
     return app
 

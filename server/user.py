@@ -2,8 +2,9 @@
 
 import json
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash, jsonify
-from models import db, User, Device, DeviceConfig, Notice
-from auth import login_required
+from models import db, User, Device, DeviceConfig, Notice, AuditLog
+from auth import login_required, get_client_ip
+from bot_executor import BotExecutor, log_audit
 
 user_bp = Blueprint("user", __name__)
 
@@ -68,32 +69,84 @@ def update_config(device_id):
 @login_required
 def bot_start(device_id):
     device = Device.query.get_or_404(device_id)
+    user_id = session["user_id"]
+    ip = get_client_ip()
 
-    if device.user_id != session["user_id"]:
+    if device.user_id != user_id:
+        log_audit(user_id, "bot_start", ip, f"device_{device_id}", "failure")
         return jsonify({"ok": False, "reason": "access_denied"}), 403
 
-    cfg = device.config
-    if cfg:
+    try:
+        cfg = device.config
+        if not cfg:
+            cfg = DeviceConfig(device_id=device_id)
+            db.session.add(cfg)
+            db.session.commit()
+
+        executor = BotExecutor.get_or_create(user_id, device_id)
+        
+        # Config path তৈরি (JSON format)
+        config_data = {
+            "adb": {"device_id": device.adb_host + ":" + str(device.adb_port)},
+            "bot": {"max_next_attempts": 50},
+            "loot": {
+                "min_gold": cfg.min_gold,
+                "min_elixir": cfg.min_elixir,
+                "min_dark": cfg.min_dark,
+            },
+            "troops": {"deploy_speed": cfg.deploy_speed},
+        }
+        
+        result = executor.start_bot(json.dumps(config_data))
+        log_audit(user_id, "bot_start", ip, f"device_{device_id}", "success" if result.get("success") else "failure")
+        
         cfg.bot_running = True
         db.session.commit()
-
-    return jsonify({"ok": True, "status": "running"})
+        return jsonify(result)
+    except Exception as e:
+        log_audit(user_id, "bot_start", ip, f"device_{device_id}", "failure")
+        return jsonify({"ok": False, "error": str(e)}), 500
 
 
 @user_bp.route("/devices/<int:device_id>/bot/stop", methods=["POST"])
 @login_required
 def bot_stop(device_id):
     device = Device.query.get_or_404(device_id)
+    user_id = session["user_id"]
+    ip = get_client_ip()
 
-    if device.user_id != session["user_id"]:
+    if device.user_id != user_id:
+        log_audit(user_id, "bot_stop", ip, f"device_{device_id}", "failure")
         return jsonify({"ok": False, "reason": "access_denied"}), 403
 
-    cfg = device.config
-    if cfg:
-        cfg.bot_running = False
-        db.session.commit()
+    try:
+        executor = BotExecutor.get_or_create(user_id, device_id)
+        result = executor.stop_bot()
+        log_audit(user_id, "bot_stop", ip, f"device_{device_id}", "success")
+        
+        cfg = device.config
+        if cfg:
+            cfg.bot_running = False
+            db.session.commit()
+        
+        return jsonify(result)
+    except Exception as e:
+        log_audit(user_id, "bot_stop", ip, f"device_{device_id}", "failure")
+        return jsonify({"ok": False, "error": str(e)}), 500
 
-    return jsonify({"ok": True, "status": "stopped"})
+
+@user_bp.route("/devices/<int:device_id>/bot/status", methods=["GET"])
+@login_required
+def bot_status(device_id):
+    device = Device.query.get_or_404(device_id)
+    user_id = session["user_id"]
+
+    if device.user_id != user_id:
+        return jsonify({"ok": False, "reason": "access_denied"}), 403
+
+    executor = BotExecutor.get_or_create(user_id, device_id)
+    status = executor.get_status()
+    return jsonify(status)
 
 
 # ─────────────────────────── API — config fetch for .exe ──────────────────────

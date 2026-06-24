@@ -4,9 +4,13 @@ services:
     runtime: python
     rootDir: server
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn --worker-class eventlet -w 1 'app:create_app()'
+    startCommand: gunicorn --worker-class eventlet -w 1 'wsgi:app'
     envVars:
       - key: SECRET_KEY
         generateValue: true
       - key: PYTHON_VERSION
         value: 3.11.0
+      - key: DATABASE_URL
+        value: sqlite:///coc_bot.db
+      - key: FLASK_ENV
+        value: production

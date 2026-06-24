@@ -19883,3 +19883,7 @@
 2026-06-17 12:59:49 | INFO     | bot_engine:_log:97 —   Waiting for Find Match button…
 2026-06-17 12:59:49 | ERROR    | bot_engine:_log:97 —   Find Match screen did not load
 2026-06-17 12:59:49 | INFO     | bot_engine:_log:97 — Bot stopped
+2026-06-20 12:33:55 | INFO     | __main__:main:32 — ============================================================
+2026-06-20 12:33:55 | INFO     | __main__:main:33 — CoC Auto Farming Bot starting
+2026-06-20 12:33:55 | INFO     | __main__:main:34 — ============================================================
+2026-06-20 12:33:55 | INFO     | config:load_config:16 — Config loaded from config.yaml

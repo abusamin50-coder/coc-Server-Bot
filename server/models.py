@@ -102,3 +102,44 @@ class Notice(db.Model):
 
     def __repr__(self):
         return f"<Notice {self.level}: {self.message[:40]}>"
+
+
+class BotSession(db.Model):
+    __tablename__ = "bot_sessions"
+
+    id              = db.Column(db.Integer, primary_key=True)
+    user_id         = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    device_id       = db.Column(db.Integer, db.ForeignKey("devices.id"), nullable=False)
+    session_token   = db.Column(db.String(256), unique=True, nullable=False)
+    
+    started_at      = db.Column(db.DateTime, default=datetime.utcnow)
+    ended_at        = db.Column(db.DateTime, nullable=True)
+    is_running      = db.Column(db.Boolean, default=True)
+    
+    total_cycles    = db.Column(db.Integer, default=0)
+    total_attacks   = db.Column(db.Integer, default=0)
+    total_gold      = db.Column(db.Integer, default=0)
+    total_elixir    = db.Column(db.Integer, default=0)
+    total_dark      = db.Column(db.Integer, default=0)
+    
+    status          = db.Column(db.String(50), default="running")  # running / paused / stopped / error
+    error_message   = db.Column(db.String(500), nullable=True)
+
+    def __repr__(self):
+        return f"<BotSession {self.user_id}/{self.device_id}>"
+
+
+class AuditLog(db.Model):
+    __tablename__ = "audit_logs"
+
+    id          = db.Column(db.Integer, primary_key=True)
+    user_id     = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    action      = db.Column(db.String(100), nullable=False)
+    resource    = db.Column(db.String(100), nullable=True)
+    details     = db.Column(db.Text, nullable=True)
+    ip_address  = db.Column(db.String(45), nullable=False)
+    timestamp   = db.Column(db.DateTime, default=datetime.utcnow)
+    status      = db.Column(db.String(20), default="success")  # success / failure
+
+    def __repr__(self):
+        return f"<AuditLog {self.user_id}: {self.action}>"
