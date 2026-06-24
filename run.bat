@@ -10,4 +10,4 @@ set FLASK_DEBUG=1
 
 REM Run server
 cd server
-python -c "from app import create_app; from flask_socketio import SocketIO; app = create_app(); socketio = SocketIO(app); print('🚀 Server running at http://localhost:5000\n📝 Login: admin / admin123\n⚠️  Press Ctrl+C to stop\n'); socketio.run(app, host='0.0.0.0', port=5000, debug=True)"
+python -c "from app import create_app; app = create_app(); print('🚀 Server running at http://localhost:5000\n📝 Login: admin / admin123\n⚠️  Press Ctrl+C to stop\n'); app.run(host='0.0.0.0', port=5000, debug=True)"

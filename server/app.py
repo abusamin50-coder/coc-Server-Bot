@@ -1,18 +1,12 @@
 """Main Flask application — CoC Bot Control Panel."""
 
-import eventlet
-eventlet.monkey_patch()
-
 import os
 from flask import Flask
-from flask_socketio import SocketIO
 from models import db
 from auth import auth_bp
 from admin import admin_bp
 from user import user_bp
 from session_manager import SessionManager
-
-socketio = SocketIO()
 
 
 def create_app():
@@ -25,7 +19,6 @@ def create_app():
     app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 
     db.init_app(app)
-    socketio.init_app(app, cors_allowed_origins="*", async_mode="eventlet")
 
     # Jinja2 custom filter — template এ {{ value | fromjson }} কাজ করবে
     import json as _json
@@ -58,8 +51,3 @@ def _create_default_admin():
         db.session.commit()
         print("✅ Default admin created — username: admin | password: admin123")
         print("⚠️  Please change the admin password immediately!")
-
-
-if __name__ == "__main__":
-    app = create_app()
-    socketio.run(app, host="0.0.0.0", port=5000, debug=False)
