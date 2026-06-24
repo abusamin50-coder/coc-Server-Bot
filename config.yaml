@@ -20,9 +20,9 @@ emulator:
   resolution_height: 816
   resolution_width: 1456
 loot:
-  dark_elixir_priority: false
+  dark_elixir_priority: true
   dark_elixir_thresholds:
-  - 0
+  - 500
   elixir_priority: true
   elixir_thresholds:
   - 100000
@@ -33,8 +33,8 @@ loot:
   min_gold: 100000
 troops:
   custom_troops:
-  - image: troop_images\Screenshot 2026-06-15 111227.png
-    name: Screenshot 2026 06 15 111227
+  - image: troop_images\Screenshot 2026-06-24 114004.png
+    name: Screenshot 2026 06 24 114004
   - image: troop_images\Screenshot 2026-06-13 125601.png
     name: Screenshot 2026 06 13 125601
   deploy_speed: 0.02
