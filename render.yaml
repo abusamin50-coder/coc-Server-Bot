@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: coc-bot-panel
+    runtime: python
+    buildCommand: cd server && pip install -r requirements.txt
+    startCommand: cd server && gunicorn --worker-class sync -w 2 --timeout 60 'wsgi:app'
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DATABASE_URL
+        value: sqlite:///coc_bot.db
+      - key: FLASK_ENV
+        value: production
