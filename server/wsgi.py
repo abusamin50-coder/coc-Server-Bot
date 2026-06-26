@@ -4,8 +4,8 @@ import os
 import sys
 from pathlib import Path
 
-# Parent directory add
-sys.path.insert(0, str(Path(__file__).parent.parent))
+# Server directory add
+sys.path.insert(0, str(Path(__file__).parent))
 
 from dotenv import load_dotenv
 load_dotenv()
