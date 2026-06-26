@@ -88,13 +88,16 @@ class MongoSession:
         if obj not in self._pending_delete:
             self._pending_delete.append(obj)
 
+    def flush(self):
+        self.commit()
+
     def commit(self):
-        for obj in self._pending_add:
+        for obj in list(self._pending_add):
             self.database._save_document(obj)
-        for obj in self._pending_delete:
+            self._pending_add.remove(obj)
+        for obj in list(self._pending_delete):
             self.database._delete_document(obj)
-        self._pending_add = []
-        self._pending_delete = []
+            self._pending_delete.remove(obj)
 
     def rollback(self):
         self._pending_add = []
