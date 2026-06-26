@@ -1,4 +1,4 @@
-"""WSGI entry point for Render deployment."""
+"""WSGI entry point for Vercel / production deployment."""
 
 import os
 import sys

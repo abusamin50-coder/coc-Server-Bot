@@ -213,7 +213,29 @@ class SmartTroopDeployer:
         logger.warning(f"Deploy zone image not found on screen (best={best_val:.2f})")
         return None
 
-    def _deploy_zones(self, screenshot: np.ndarray = None) -> list[tuple[int, int]]:
+    def _deploy_zones(self, screenshot: np.ndarray = None, cached_x: int = None, cached_y: int = None) -> list[tuple[int, int]]:
+        """
+        Deploy zones priority:
+        1. Use cached (x,y) if provided
+        2. Auto-detect from screenshot if available
+        3. Fall back to custom zones from config
+        4. Use default left-side grid
+        """
+        # Priority 1: Use cached values
+        if cached_x is not None and cached_y is not None:
+            cx, cy = cached_x, cached_y
+            offsets = [
+                (0, 0),
+                (-20, 0), (20, 0),
+                (0, -20), (0, 20),
+                (-15, -15), (15, -15),
+                (-15, 15), (15, 15),
+            ]
+            zones = [(cx + dx, cy + dy) for dx, dy in offsets]
+            logger.info(f"Using CACHED deploy zone at ({cx},{cy}) — {len(zones)} spread points")
+            return zones
+
+        # Priority 2: Try to detect from screenshot
         if screenshot is not None:
             center = self._find_deploy_zone_on_screen(screenshot)
             if center is not None:
@@ -226,21 +248,23 @@ class SmartTroopDeployer:
                     (-15, 15), (15, 15),
                 ]
                 zones = [(cx + dx, cy + dy) for dx, dy in offsets]
-                logger.info(f"Deploy zone image matched — {len(zones)} spread points around ({cx},{cy})")
+                logger.info(f"Deploy zone DETECTED at ({cx},{cy}) — {len(zones)} spread points")
                 return zones
 
+        # Priority 3: Use custom zones from config
         custom = self.config.get("deploy_zones", [])
         if custom:
             zones = [(z["x"], z["y"]) for z in custom]
             logger.info(f"Using {len(zones)} custom deploy zones from config")
             return zones
 
+        # Priority 4: Default grid
         w, h = self.width, self.height
         zones = []
         for col in [0.08, 0.14, 0.20]:
             for row in [0.08, 0.16, 0.24, 0.32, 0.40, 0.48, 0.56, 0.64]:
                 zones.append((int(w * col), int(h * row)))
-        logger.info(f"Using default {len(zones)} deploy zones (left-side grid)")
+        logger.info(f"Using DEFAULT {len(zones)} deploy zones (left-side grid)")
         return zones
 
     # ── Single troop — deploy until gray ────────────────────────────────────────
@@ -250,10 +274,13 @@ class SmartTroopDeployer:
         Select troop at (cx, cy), then keep tapping deploy zones
         until the slot turns gray (empty).
 
+        Optimized: Check saturation every 10-15 taps (not every 3)
+        to reduce screenshot frequency by ~70%.
+
         Loop:
           1. Tap slot to select
-          2. Tap next deploy zone
-          3. Re-screenshot and check saturation
+          2. Tap next deploy zone (10-15 times per check)
+          3. Re-screenshot and check saturation (less frequently)
           4. Still colorful → repeat from step 2
           5. Gray → done
         """
@@ -266,6 +293,7 @@ class SmartTroopDeployer:
         zone_idx  = 0
         tap_count = 0
         max_taps  = 300  # safety — never loop forever
+        check_interval = 12  # Check saturation every 12 taps (was 3) — 75% fewer screenshots
 
         self._log(f"  Deploying '{name}' until gray…")
 
@@ -277,8 +305,8 @@ class SmartTroopDeployer:
             tap_count += 1
             self._sleep(self.deploy_speed)
 
-            # Every 3 taps: check if slot is now gray
-            if tap_count % 3 == 0:
+            # Check saturation every N taps (reduced frequency)
+            if tap_count % check_interval == 0:
                 shot = self._snap()
                 if shot is None:
                     continue

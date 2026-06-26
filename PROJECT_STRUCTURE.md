@@ -60,15 +60,15 @@ PROJECT STRUCTURE & FILE MANIFEST
 server/
 ├── 🏗️ Application Core
 │   ├── app.py                      Flask app factory
-│   │   - Creates app with SQLAlchemy
+│   │   - Creates app with MongoDB
 │   │   - Registers blueprints
 │   │   - Creates default admin
 │   │   - Initializes SessionManager
 │   │
 │   └── wsgi.py                     WSGI entry point (NEW)
-│       - For Render deployment
+│       - For Vercel deployment
 │       - Loads environment variables
-│       - Runs gunicorn-compatible app
+│       - Runs Flask app
 │
 ├── 🔐 Authentication & Routes
 │   ├── auth.py                     Login/Logout/API auth (Updated)
@@ -95,7 +95,7 @@ server/
 │       - POST /user/api/attack_count/*  Increment attacks
 │
 ├── 🗄️ Database (NEW)
-│   ├── models.py                   SQLAlchemy models (Updated)
+│   ├── models.py                   MongoDB models (Updated)
 │   │   - User              (admin/user roles, session_version)
 │   │   - Device            (ADB devices per user)
 │   │   - DeviceConfig      (Loot thresholds, attack limits)
@@ -104,7 +104,7 @@ server/
 │   │   - BannedIP          (Access control)
 │   │   - Notice            (Admin notifications)
 │   │
-│   └── coc_bot.db              Database file (Auto-created)
+│   └── MongoDB                Live database backend
 │
 ├── 🤖 Bot Execution (NEW)
 │   ├── bot_executor.py            Bot process wrapper (NEW)
@@ -124,21 +124,21 @@ server/
 │
 ├── ⚙️ Configuration
 │   ├── requirements.txt            Server dependencies (Updated)
-│   │   - flask==3.0.0
-│   │   - flask-sqlalchemy==3.1.1
-│   │   - werkzeug==3.0.1
-│   │   - gunicorn==22.0.0 (sync worker)
-│   │   - python-dotenv==1.0.0
-│   │   - loguru==0.7.2
+│   │   - flask>=3.0.0
+│   │   - pymongo>=4.9.0
+│   │   - werkzeug>=3.0.1
+│   │   - python-dotenv>=1.0.0
+│   │   - loguru>=0.7.2
 │   │
-│   ├── Procfile                    Render start command (Updated)
-│   │   - gunicorn --worker-class sync -w 2 --timeout 60 'wsgi:app'
+│   ├── .env.example               Environment variable template
+│   │   - MONGODB_URI
+│   │   - MONGODB_DB
+│   │   - SECRET_KEY
 │   │
-│   └── render.yaml                 Render manifest (Updated)
-│       - Service config
-│       - Build command
-│       - Start command
-│       - Environment variables
+│   └── vercel.json               Vercel deployment config
+│       - Python build config
+│       - Route mapping to server/wsgi.py
+│       - Vercel-friendly environment support
 │
 └── 🎨 Templates
     └── templates/
@@ -271,7 +271,7 @@ AFTER:
   ✅ Admin controls
   ✅ Password management
   ✅ Audit logging
-  ✅ Cloud-ready (Render)
+  ✅ Cloud-ready (Vercel)
   ✅ No changes to core bot logic
   ✅ All existing bot files unchanged
 
@@ -284,10 +284,10 @@ AFTER:
    run.bat (or ./run.sh)
    http://localhost:5000
 
-2. Render Deployment:
+2. Vercel Deployment:
    git push
-   Create Web Service on Render
-   Auto-deploys with render.yaml
+   Import project to Vercel
+   Set environment variables
 
 3. First Login:
    admin / admin123

@@ -7,3 +7,7 @@ loguru>=0.7.2
 numpy>=1.26.0
 colorama>=0.4.6
 psutil>=5.9.0
+flask>=3.0.0
+pymongo>=4.9.0
+python-dotenv>=1.0.0
+werkzeug>=3.0.1

@@ -1,7 +1,13 @@
 """Main Flask application — CoC Bot Control Panel."""
 
 import os
+import sys
+from pathlib import Path
+
 from flask import Flask
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from models import db
 from auth import auth_bp
 from admin import admin_bp
@@ -12,9 +18,7 @@ from session_manager import SessionManager
 def create_app():
     app = Flask(__name__)
 
-    app.config["SECRET_KEY"]           = os.environ.get("SECRET_KEY", "coc-bot-secret-change-in-prod")
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///coc_bot.db")
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "coc-bot-secret-change-in-prod")
     app.config["SESSION_COOKIE_HTTPONLY"] = True
     app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 

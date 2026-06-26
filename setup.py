@@ -41,7 +41,8 @@ def main():
         with open(".env", "w") as f:
             f.write("""SECRET_KEY=dev-secret-key-change-in-prod
 FLASK_ENV=development
-DATABASE_URL=sqlite:///coc_bot.db
+MONGODB_URI=mongodb://127.0.0.1:27017
+MONGODB_DB=coc_bot
 """)
         print("✅ Created .env file")
     

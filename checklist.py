@@ -32,7 +32,7 @@ def main():
         "server/session_manager.py",
         "server/wsgi.py",
         "server/requirements.txt",
-        "server/Procfile",
+        "vercel.json",
         "bot_launcher.py",
         "requirements.txt",
         ".env.example",
@@ -54,7 +54,7 @@ def main():
         with open("server/requirements.txt") as f:
             content = f.read().lower()
             all_good &= check("flask" in content, "flask in server/requirements.txt")
-            all_good &= check("sqlalchemy" in content, "sqlalchemy in server/requirements.txt")
+            all_good &= check("pymongo" in content, "pymongo in server/requirements.txt")
             all_good &= check("python-dotenv" in content, "python-dotenv in server/requirements.txt")
     
     # Database models
@@ -94,8 +94,7 @@ def main():
     # Configuration
     print("\n⚙️  Configuration:")
     all_good &= check(Path(".env.example").exists(), ".env.example exists")
-    all_good &= check(Path("server/render.yaml").exists(), "render.yaml exists")
-    all_good &= check(Path("server/Procfile").exists(), "Procfile exists")
+    all_good &= check(Path("vercel.json").exists(), "vercel.json exists")
     
     # Security
     print("\n🔒 Security Checks:")

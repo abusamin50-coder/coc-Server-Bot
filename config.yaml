@@ -15,15 +15,15 @@ delays:
   battle_check_interval: 2
   cycle_end_pause: 2
   next_base_wait: 1.5
-deploy_zone_image: troop_images\deploy_zone_Screenshot 2026-06-14 193932.png
+deploy_zone_image: troop_images\deploy_zone_Screenshot 2026-06-04 151859.png
 emulator:
   resolution_height: 816
   resolution_width: 1456
 loot:
-  dark_elixir_priority: true
+  dark_elixir_priority: false
   dark_elixir_thresholds:
   - 500
-  elixir_priority: true
+  elixir_priority: false
   elixir_thresholds:
   - 100000
   gold_priority: false

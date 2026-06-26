@@ -37,10 +37,9 @@
 - ✅ HTTPOnly session cookies
 - ✅ Complete audit trail
 
-### Render Deployment
+### Deployment
 - ✅ `wsgi.py` - WSGI entry point
-- ✅ `Procfile` - Render deployment config
-- ✅ `render.yaml` - Complete deployment manifest
+- ✅ `vercel.json` - Vercel deployment config
 - ✅ `.env.example` - Environment variables template
 - ✅ `.gitignore` - Git ignore patterns
 - ✅ Requirements.txt updated with all dependencies
@@ -60,15 +59,16 @@
 ```
 server/bot_executor.py           → Web wrapper for bot execution
 server/session_manager.py        → Session invalidation manager
-server/wsgi.py                   → Render WSGI entry point
+server/wsgi.py                   → Vercel WSGI entry point
 bot_launcher.py                  → Bot execution launcher
 .env.example                     → Environment template
 .gitignore                       → Git patterns
 DEPLOYMENT.md                    → Deployment guide
 setup.py                         → Setup automation
 run.sh                          → Unix runner
-run.bat                         → Windows runner
+run.bat                          → Windows runner
 checklist.py                    → Deployment checklist
+vercel.json                     → Vercel deployment config
 ```
 
 ### Modified Files
@@ -79,8 +79,7 @@ server/admin.py                 → SessionManager.invalidate_all_sessions()
 server/user.py                  → BotExecutor integration
 server/app.py                   → SessionManager initialization
 server/requirements.txt         → Added loguru, python-dotenv
-server/Procfile                 → Updated for wsgi.py
-server/render.yaml              → Complete config update
+vercel.json                     → Added Vercel deployment config
 requirements.txt                → (unchanged, already complete)
 ```
 
@@ -145,7 +144,7 @@ Every action logged:
 
 ---
 
-## Deployment Steps (Render)
+## Deployment Steps
 
 ### 1. Push to GitHub
 ```bash
@@ -154,22 +153,24 @@ git commit -m "Add web server and bot executor"
 git push origin main
 ```
 
-### 2. Create Render Service
-- Go to https://render.com
-- New → Web Service
-- Connect GitHub repo
-- Select branch
-- Set runtime: Python 3.11
-- Root directory: `server`
+### 2. Create Vercel Project
+- Go to https://vercel.com
+- Import the GitHub repository
+- Choose Python runtime
+- Set root directory to repository root
 
 ### 3. Configure Environment
-Render will auto-use `render.yaml` from root directory
+Set Vercel environment variables:
+- `SECRET_KEY`
+- `MONGODB_URI`
+- `MONGODB_DB`
+- `FLASK_ENV=production`
 
 ### 4. Deploy
-Click "Create Web Service" → Render deploys automatically
+Click "Deploy" → Vercel deploys automatically
 
 ### 5. Post-Deployment
-1. Visit your-app.render.com
+1. Visit your-app.vercel.app
 2. Login: admin / admin123
 3. Change admin password immediately
 4. Create users
@@ -225,7 +226,7 @@ http://localhost:5000
 
 ## Performance Considerations
 
-- SQLite for local dev (upgrade to PostgreSQL on Render if needed)
+- MongoDB for local dev and production
 - Gunicorn sync worker (stable, no async overhead)
 - 2 worker processes with 60s timeout
 - Session-based authentication (no JWT overhead)
@@ -247,10 +248,10 @@ http://localhost:5000
 4. Login again
 
 ### Deployment fails
-1. Check `render.yaml` syntax
+1. Check `vercel.json` syntax
 2. Verify `requirements.txt` versions
 3. Check Python version (3.9+)
-4. Review Render logs
+4. Review Vercel deployment logs
 
 ---
 
@@ -268,9 +269,9 @@ http://localhost:5000
    - Update admin password
    - Review audit logs
 
-3. **Deploy to Render**
+3. **Deploy to Vercel**
    - Push to GitHub
-   - Connect Render service
+   - Connect Vercel project
    - Set environment variables
    - Monitor deployment
 
@@ -293,4 +294,4 @@ Your bot system is production-ready with:
 - ✅ Easy deployment
 - ✅ No code modifications needed
 
-**Ready to deploy? Push to GitHub and connect Render!** 🚀
+**Ready to deploy? Push to GitHub and connect Vercel!** 🚀

@@ -19887,3 +19887,714 @@
 2026-06-20 12:33:55 | INFO     | __main__:main:33 — CoC Auto Farming Bot starting
 2026-06-20 12:33:55 | INFO     | __main__:main:34 — ============================================================
 2026-06-20 12:33:55 | INFO     | config:load_config:16 — Config loaded from config.yaml
+2026-06-24 11:39:27 | INFO     | __main__:main:32 — ============================================================
+2026-06-24 11:39:27 | INFO     | __main__:main:33 — CoC Auto Farming Bot starting
+2026-06-24 11:39:27 | INFO     | __main__:main:34 — ============================================================
+2026-06-24 11:39:28 | INFO     | config:load_config:16 — Config loaded from config.yaml
+2026-06-24 11:39:56 | INFO     | config:save_config:26 — Config saved
+2026-06-24 11:40:10 | INFO     | config:save_config:26 — Config saved
+2026-06-24 11:40:10 | INFO     | config:save_config:26 — Config saved
+2026-06-24 11:40:14 | INFO     | config:save_config:26 — Config saved
+2026-06-24 11:40:16 | INFO     | config:save_config:26 — Config saved
+2026-06-24 11:40:26 | INFO     | config:save_config:26 — Config saved
+2026-06-24 11:40:28 | INFO     | config:save_config:26 — Config saved
+2026-06-24 11:40:31 | INFO     | adb_controller:_resolve_adb:45 — ADB found: C:\Users\samin\AppData\Local\Android\Sdk\platform-tools\adb.exe
+2026-06-24 11:40:31 | INFO     | adb_controller:_check_adb_works:67 — ADB ready: Android Debug Bridge version 1.0.41
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: attack_btn (375x102)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: attack_icon (197x190)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: end_battle_btn (222x88)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: find_match_btn (443x154)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: home_icon (1811x1002)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: loot_dark (35x36)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: loot_elixir (45x42)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: loot_elixir2 (60x63)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: loot_gold (45x42)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: loot_gold2 (63x62)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: next_btn (306x176)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: return_home_btn (244x101)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:58 —   Template loaded: Screenshot 2026-06-04 151859 (296x220)
+2026-06-24 11:40:31 | INFO     | vision:_load_all:62 — Templates ready: 13 loaded from templates
+2026-06-24 11:40:31 | INFO     | vision:_init_tesseract:170 — Tesseract OCR ready
+2026-06-24 11:40:31 | INFO     | bot_engine:__init__:68 — CoCBot initialised
+2026-06-24 11:40:31 | INFO     | bot_engine:_log:97 — Bot starting…
+2026-06-24 11:40:34 | INFO     | adb_controller:connect_device:179 — Connected to 127.0.0.1:5555
+2026-06-24 11:40:34 | INFO     | bot_engine:_log:97 — ADB connected — starting farm loop
+2026-06-24 11:40:34 | INFO     | bot_engine:_log:97 — ═══ Cycle 1 start ═══
+2026-06-24 11:40:34 | INFO     | bot_engine:_log:97 — Step 1: Looking for Attack icon on home screen…
+2026-06-24 11:40:35 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:40:36 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.77
+2026-06-24 11:40:36 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_icon' visible
+2026-06-24 11:40:38 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:40:38 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.77
+2026-06-24 11:40:38 | INFO     | bot_engine:_find_button:129 —   Found 'attack_icon' at (126,958) score=0.77
+2026-06-24 11:40:39 | INFO     | bot_engine:_log:97 —   Attack icon tapped
+2026-06-24 11:40:39 | INFO     | bot_engine:_log:97 —   Waiting for Find Match button…
+2026-06-24 11:40:40 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:40:41 | DEBUG    | vision:find:137 — 'find_match_btn' not found (best=0.34 < 0.35)
+2026-06-24 11:40:41 | ERROR    | bot_engine:_log:97 —   Find Match screen did not load
+2026-06-24 11:40:41 | INFO     | bot_engine:_log:97 — Bot stopped
+2026-06-24 11:41:10 | INFO     | adb_controller:_resolve_adb:45 — ADB found: C:\Users\samin\AppData\Local\Android\Sdk\platform-tools\adb.exe
+2026-06-24 11:41:10 | INFO     | adb_controller:_check_adb_works:67 — ADB ready: Android Debug Bridge version 1.0.41
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: attack_btn (375x102)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: attack_icon (197x190)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: end_battle_btn (222x88)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: find_match_btn (443x154)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: home_icon (1811x1002)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: loot_dark (35x36)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: loot_elixir (45x42)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: loot_elixir2 (60x63)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: loot_gold (45x42)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: loot_gold2 (63x62)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: next_btn (306x176)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: return_home_btn (244x101)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:58 —   Template loaded: Screenshot 2026-06-04 151859 (296x220)
+2026-06-24 11:41:10 | INFO     | vision:_load_all:62 — Templates ready: 13 loaded from templates
+2026-06-24 11:41:10 | INFO     | vision:_init_tesseract:170 — Tesseract OCR ready
+2026-06-24 11:41:10 | INFO     | bot_engine:__init__:68 — CoCBot initialised
+2026-06-24 11:41:10 | INFO     | bot_engine:_log:97 — Bot starting…
+2026-06-24 11:41:10 | INFO     | adb_controller:connect_device:169 — Device 127.0.0.1:5555 already connected
+2026-06-24 11:41:10 | INFO     | bot_engine:_log:97 — ADB connected — starting farm loop
+2026-06-24 11:41:10 | INFO     | bot_engine:_log:97 — ═══ Cycle 1 start ═══
+2026-06-24 11:41:10 | INFO     | bot_engine:_log:97 — Step 1: Looking for Attack icon on home screen…
+2026-06-24 11:41:12 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:41:12 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.77
+2026-06-24 11:41:12 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_icon' visible
+2026-06-24 11:41:14 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:41:14 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.77
+2026-06-24 11:41:14 | INFO     | bot_engine:_find_button:129 —   Found 'attack_icon' at (126,958) score=0.77
+2026-06-24 11:41:15 | INFO     | bot_engine:_log:97 —   Attack icon tapped
+2026-06-24 11:41:15 | INFO     | bot_engine:_log:97 —   Waiting for Find Match button…
+2026-06-24 11:41:16 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:41:17 | DEBUG    | vision:find:137 — 'find_match_btn' not found (best=0.34 < 0.35)
+2026-06-24 11:41:19 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:41:20 | DEBUG    | vision:find:134 — 'find_match_btn' → (331,804) score=0.89
+2026-06-24 11:41:20 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'find_match_btn' visible
+2026-06-24 11:41:20 | INFO     | bot_engine:_log:97 —   Step 1 complete — Find Match screen loaded
+2026-06-24 11:41:20 | INFO     | bot_engine:_log:97 — Step 2: Tapping Find a Match…
+2026-06-24 11:41:21 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:41:22 | DEBUG    | vision:find:134 — 'find_match_btn' → (331,804) score=0.89
+2026-06-24 11:41:22 | INFO     | bot_engine:_find_button:129 —   Found 'find_match_btn' at (331,804) score=0.89
+2026-06-24 11:41:22 | INFO     | bot_engine:_log:97 —   Find Match tapped — waiting for Attack! button…
+2026-06-24 11:41:23 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:41:24 | DEBUG    | vision:find:134 — 'attack_btn' → (1655,69) score=0.47
+2026-06-24 11:41:24 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_btn' visible
+2026-06-24 11:41:25 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:41:26 | DEBUG    | vision:find:134 — 'attack_btn' → (1698,967) score=0.91
+2026-06-24 11:41:26 | INFO     | bot_engine:_find_button:129 —   Found 'attack_btn' at (1698,967) score=0.91
+2026-06-24 11:41:26 | INFO     | bot_engine:_log:97 —   Attack! clicked — waiting 2s for enemy village to load…
+2026-06-24 11:41:28 | INFO     | bot_engine:_log:97 —   Step 2 complete — enemy village loaded
+2026-06-24 11:41:28 | INFO     | bot_engine:_log:97 — Step 3: Loot check (max 5 attempts)…
+2026-06-24 11:41:28 | INFO     | bot_engine:_log:97 —   Attempt 1/6
+2026-06-24 11:41:29 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:41:29 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=150: '' → 0
+2026-06-24 11:41:29 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=170: '' → 0
+2026-06-24 11:41:29 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=180: '' → 0
+2026-06-24 11:41:29 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=200: '' → 0
+2026-06-24 11:41:29 | DEBUG    | vision:_ocr_region:296 —   OCR Gold final → 0
+2026-06-24 11:41:30 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=150: '' → 0
+2026-06-24 11:41:30 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=170: '' → 0
+2026-06-24 11:41:30 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=180: '' → 0
+2026-06-24 11:41:30 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=200: '' → 0
+2026-06-24 11:41:30 | DEBUG    | vision:_ocr_region:296 —   OCR Elixir final → 0
+2026-06-24 11:41:30 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=150: '' → 0
+2026-06-24 11:41:30 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=170: '' → 0
+2026-06-24 11:41:30 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=180: '' → 0
+2026-06-24 11:41:30 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=200: '' → 0
+2026-06-24 11:41:30 | DEBUG    | vision:_ocr_region:296 —   OCR Dark final → 0
+2026-06-24 11:41:30 | INFO     | vision:read_loot:205 — OCR loot — Gold=0  Elixir=0  Dark=0
+2026-06-24 11:41:30 | INFO     | bot_engine:_log:97 —   OCR loot → Gold:0  Elixir:0  Dark:0
+2026-06-24 11:41:30 | WARNING  | bot_engine:_log:97 —   OCR zero (try 1/3) — retrying 1.5s…
+2026-06-24 11:41:34 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:41:34 | DEBUG    | vision:_ocr_region:292 —   OCR Gold thr=150: '225314' → 225314 (new best)
+2026-06-24 11:41:34 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=170: '225314' → 225314
+2026-06-24 11:41:34 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=180: '225314' → 225314
+2026-06-24 11:41:34 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=200: '225314' → 225314
+2026-06-24 11:41:34 | DEBUG    | vision:_ocr_region:296 —   OCR Gold final → 225314
+2026-06-24 11:41:35 | DEBUG    | vision:_ocr_region:292 —   OCR Elixir thr=150: '247174,' → 247174 (new best)
+2026-06-24 11:41:35 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=170: '247174' → 247174
+2026-06-24 11:41:35 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=180: '247174' → 247174
+2026-06-24 11:41:35 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=200: '247174' → 247174
+2026-06-24 11:41:35 | DEBUG    | vision:_ocr_region:296 —   OCR Elixir final → 247174
+2026-06-24 11:41:35 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=150: '' → 0
+2026-06-24 11:41:35 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=170: '' → 0
+2026-06-24 11:41:35 | DEBUG    | vision:_ocr_region:292 —   OCR Dark thr=180: '933' → 933 (new best)
+2026-06-24 11:41:36 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=200: '933' → 933
+2026-06-24 11:41:36 | DEBUG    | vision:_ocr_region:296 —   OCR Dark final → 933
+2026-06-24 11:41:36 | INFO     | vision:read_loot:205 — OCR loot — Gold=225314  Elixir=247174  Dark=933
+2026-06-24 11:41:36 | INFO     | bot_engine:_log:97 —   OCR loot → Gold:225314  Elixir:247174  Dark:933
+2026-06-24 11:41:36 | INFO     | bot_engine:_log:97 —   [PRIORITY] Elixir: 247174 >= 100000? YES
+2026-06-24 11:41:36 | INFO     | bot_engine:_log:97 —   [PRIORITY] Dark: 933 >= 500? YES
+2026-06-24 11:41:36 | SUCCESS  | bot_engine:_log:97 —   Loot matched! [PRIORITY] ATTACK: Elixir(247174>=100000), Dark(933>=500)
+2026-06-24 11:41:36 | INFO     | bot_engine:_log:97 —   Step 3 complete — starting deploy
+2026-06-24 11:41:36 | INFO     | bot_engine:_log:97 — Step 4: Starting troop deployment…
+2026-06-24 11:41:36 | INFO     | troop_detector:_log:167 — Starting troop deployment (2 troop type(s))…
+2026-06-24 11:41:36 | INFO     | troop_detector:_log:167 —   Pass 1 — scanning troop bar…
+2026-06-24 11:41:37 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:41:38 | INFO     | troop_detector:_find_deploy_zone_on_screen:210 — Deploy zone found at (1024,272) conf=0.59
+2026-06-24 11:41:38 | INFO     | troop_detector:_deploy_zones:229 — Deploy zone image matched — 9 spread points around (1024,272)
+2026-06-24 11:41:38 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 129.5 → AVAILABLE
+2026-06-24 11:41:39 | INFO     | troop_detector:_log:167 —   Deploying 'Screenshot 2026 06 24 114004' until gray…
+2026-06-24 11:41:41 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:41:41 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 129.6 → AVAILABLE
+2026-06-24 11:41:44 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:41:44 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 129.6 → AVAILABLE
+2026-06-24 11:41:46 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:41:46 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 129.6 → AVAILABLE
+2026-06-24 11:41:48 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:41:48 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 129.6 → AVAILABLE
+2026-06-24 11:41:50 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:41:50 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 0.2 → EMPTY
+2026-06-24 11:41:50 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 24 114004': gray after 15 taps — done
+2026-06-24 11:41:51 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:41:51 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,985): 159.2 → AVAILABLE
+2026-06-24 11:41:53 | INFO     | troop_detector:_log:167 —   Deploying 'Screenshot 2026 06 13 125601' until gray…
+2026-06-24 11:41:55 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:41:55 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,985): 156.2 → AVAILABLE
+2026-06-24 11:41:57 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:41:57 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,985): 0.0 → EMPTY
+2026-06-24 11:41:57 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 13 125601': gray after 6 taps — done
+2026-06-24 11:41:58 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:41:58 | INFO     | troop_detector:_log:167 —   Pass 1 done — rescanning for remaining troops…
+2026-06-24 11:41:58 | INFO     | troop_detector:_log:167 —   Pass 2 — scanning troop bar…
+2026-06-24 11:42:00 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:42:00 | INFO     | troop_detector:_find_deploy_zone_on_screen:210 — Deploy zone found at (1552,792) conf=0.55
+2026-06-24 11:42:00 | INFO     | troop_detector:_deploy_zones:229 — Deploy zone image matched — 9 spread points around (1552,792)
+2026-06-24 11:42:01 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 0.0 → EMPTY
+2026-06-24 11:42:01 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 24 114004': gray — already empty, skip
+2026-06-24 11:42:01 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,984): 0.0 → EMPTY
+2026-06-24 11:42:01 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 13 125601': gray — already empty, skip
+2026-06-24 11:42:01 | INFO     | troop_detector:_log:167 —   All slots gray — deployment complete!
+2026-06-24 11:42:01 | INFO     | troop_detector:_log:167 — Troop deployment finished
+2026-06-24 11:42:01 | INFO     | bot_engine:_log:97 —   Step 4 complete — all troops deployed
+2026-06-24 11:42:01 | INFO     | bot_engine:_log:97 — Step 5: Battle in progress — checking Return Home every 7s (max 180s)…
+2026-06-24 11:42:01 | INFO     | bot_engine:_log:97 —   Check #1 at 0s — looking for Return Home…
+2026-06-24 11:42:02 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:42:03 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.44 < 0.60)
+2026-06-24 11:42:10 | INFO     | bot_engine:_log:97 —   Check #2 at 9s — looking for Return Home…
+2026-06-24 11:42:11 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:42:12 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.44 < 0.60)
+2026-06-24 11:42:19 | INFO     | bot_engine:_log:97 —   Check #3 at 18s — looking for Return Home…
+2026-06-24 11:42:20 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:42:21 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.45 < 0.60)
+2026-06-24 11:42:28 | INFO     | bot_engine:_log:97 —   Check #4 at 27s — looking for Return Home…
+2026-06-24 11:42:29 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:42:30 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.45 < 0.60)
+2026-06-24 11:42:37 | INFO     | bot_engine:_log:97 —   Check #5 at 36s — looking for Return Home…
+2026-06-24 11:42:39 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:42:39 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.45 < 0.60)
+2026-06-24 11:42:46 | INFO     | bot_engine:_log:97 —   Check #6 at 45s — looking for Return Home…
+2026-06-24 11:42:48 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:42:48 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.45 < 0.60)
+2026-06-24 11:42:55 | INFO     | bot_engine:_log:97 —   Check #7 at 54s — looking for Return Home…
+2026-06-24 11:42:57 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:42:58 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.45 < 0.60)
+2026-06-24 11:43:05 | INFO     | bot_engine:_log:97 —   Check #8 at 63s — looking for Return Home…
+2026-06-24 11:43:06 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:43:07 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.45 < 0.60)
+2026-06-24 11:43:14 | INFO     | bot_engine:_log:97 —   Check #9 at 72s — looking for Return Home…
+2026-06-24 11:43:15 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:43:16 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.45 < 0.60)
+2026-06-24 11:43:23 | INFO     | bot_engine:_log:97 —   Check #10 at 81s — looking for Return Home…
+2026-06-24 11:43:24 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:43:25 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.45 < 0.60)
+2026-06-24 11:43:32 | INFO     | bot_engine:_log:97 —   Check #11 at 91s — looking for Return Home…
+2026-06-24 11:43:33 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:43:34 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.45 < 0.60)
+2026-06-24 11:43:41 | INFO     | bot_engine:_log:97 —   Check #12 at 100s — looking for Return Home…
+2026-06-24 11:43:42 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:43:43 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.45 < 0.60)
+2026-06-24 11:43:50 | INFO     | bot_engine:_log:97 —   Check #13 at 109s — looking for Return Home…
+2026-06-24 11:43:51 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:43:52 | DEBUG    | vision:find:134 — 'return_home_btn' → (960,925) score=0.95
+2026-06-24 11:43:52 | INFO     | bot_engine:_log:97 —   Return Home found at 109s (score=0.95) — tapping!
+2026-06-24 11:43:53 | INFO     | bot_engine:_log:97 —   Waiting for home screen to load…
+2026-06-24 11:43:54 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:43:55 | DEBUG    | vision:find:134 — 'attack_icon' → (600,325) score=0.53
+2026-06-24 11:43:55 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_icon' visible
+2026-06-24 11:43:55 | INFO     | bot_engine:_log:97 —   Step 5 complete — home screen confirmed
+2026-06-24 11:43:55 | INFO     | bot_engine:_log:97 — ═══ Cycle 1 complete ═══
+2026-06-24 11:43:55 | INFO     | bot_engine:_log:97 — ═══ Cycle 2 start ═══
+2026-06-24 11:43:55 | INFO     | bot_engine:_log:97 — Step 1: Looking for Attack icon on home screen…
+2026-06-24 11:43:56 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:43:57 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.75
+2026-06-24 11:43:57 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_icon' visible
+2026-06-24 11:43:58 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:43:59 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.75
+2026-06-24 11:43:59 | INFO     | bot_engine:_find_button:129 —   Found 'attack_icon' at (126,958) score=0.75
+2026-06-24 11:43:59 | INFO     | bot_engine:_log:97 —   Attack icon tapped
+2026-06-24 11:43:59 | INFO     | bot_engine:_log:97 —   Waiting for Find Match button…
+2026-06-24 11:44:01 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:44:01 | DEBUG    | vision:find:137 — 'find_match_btn' not found (best=0.34 < 0.35)
+2026-06-24 11:44:03 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:44:04 | DEBUG    | vision:find:134 — 'find_match_btn' → (331,804) score=0.89
+2026-06-24 11:44:04 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'find_match_btn' visible
+2026-06-24 11:44:04 | INFO     | bot_engine:_log:97 —   Step 1 complete — Find Match screen loaded
+2026-06-24 11:44:04 | INFO     | bot_engine:_log:97 — Step 2: Tapping Find a Match…
+2026-06-24 11:44:05 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:44:06 | DEBUG    | vision:find:134 — 'find_match_btn' → (331,804) score=0.89
+2026-06-24 11:44:06 | INFO     | bot_engine:_find_button:129 —   Found 'find_match_btn' at (331,804) score=0.89
+2026-06-24 11:44:06 | INFO     | bot_engine:_log:97 —   Find Match tapped — waiting for Attack! button…
+2026-06-24 11:44:07 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:44:07 | INFO     | adb_controller:disconnect:216 — ADB disconnected
+2026-06-24 11:44:08 | DEBUG    | vision:find:134 — 'attack_btn' → (1647,69) score=0.47
+2026-06-24 11:44:08 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_btn' visible
+2026-06-24 11:44:08 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:08 | ERROR    | bot_engine:_log:97 —   Attack button not found to click
+2026-06-24 11:44:08 | WARNING  | bot_engine:_log:97 — Cycle failed — retrying in 5s…
+2026-06-24 11:44:13 | INFO     | bot_engine:_log:97 — ═══ Cycle 3 start ═══
+2026-06-24 11:44:13 | INFO     | bot_engine:_log:97 — Step 1: Looking for Attack icon on home screen…
+2026-06-24 11:44:13 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:14 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:15 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:16 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:17 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:18 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:19 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:20 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:21 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:23 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:24 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:25 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:26 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:27 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:28 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:29 | WARNING  | bot_engine:_wait_until_visible:152 —   Timeout (15s) waiting for 'attack_icon'
+2026-06-24 11:44:29 | ERROR    | bot_engine:_log:97 —   Attack icon not found on home screen
+2026-06-24 11:44:29 | WARNING  | bot_engine:_log:97 — Cycle failed — retrying in 5s…
+2026-06-24 11:44:34 | INFO     | bot_engine:_log:97 — ═══ Cycle 4 start ═══
+2026-06-24 11:44:34 | INFO     | bot_engine:_log:97 — Step 1: Looking for Attack icon on home screen…
+2026-06-24 11:44:34 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:35 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:36 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:37 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:38 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:39 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:40 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:41 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:42 | WARNING  | bot_engine:_screenshot:110 — Screenshot failed
+2026-06-24 11:44:43 | ERROR    | bot_engine:_log:97 —   Attack icon not found on home screen
+2026-06-24 11:44:43 | INFO     | bot_engine:_log:97 — Bot stopped
+2026-06-24 11:44:45 | INFO     | adb_controller:_resolve_adb:45 — ADB found: C:\Users\samin\AppData\Local\Android\Sdk\platform-tools\adb.exe
+2026-06-24 11:44:45 | INFO     | adb_controller:_check_adb_works:67 — ADB ready: Android Debug Bridge version 1.0.41
+2026-06-24 11:44:45 | INFO     | adb_controller:auto_connect_ldplayer:130 — Starting auto-connect to LDPlayer...
+2026-06-24 11:44:45 | INFO     | adb_controller:auto_connect_ldplayer:133 — Cleaning up existing processes...
+2026-06-24 11:44:45 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: cmd.exe (PID: 1464)
+2026-06-24 11:44:45 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: cmd.exe (PID: 2720)
+2026-06-24 11:44:45 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: powershell.exe (PID: 7668)
+2026-06-24 11:44:45 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: adb.exe (PID: 10088)
+2026-06-24 11:44:45 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: cmd.exe (PID: 19052)
+2026-06-24 11:44:45 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: cmd.exe (PID: 19700)
+2026-06-24 11:44:45 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: cmd.exe (PID: 22020)
+2026-06-24 11:44:46 | INFO     | adb_controller:kill_all_terminals:95 — Killed 7 terminal/ADB processes
+2026-06-24 11:44:48 | INFO     | adb_controller:auto_connect_ldplayer:138 — Starting ADB server...
+2026-06-24 11:44:51 | INFO     | adb_controller:auto_connect_ldplayer:146 — Scanning for LDPlayer emulator...
+2026-06-24 11:44:52 | INFO     | adb_controller:find_ldplayer_adb:120 — Found LDPlayer at 127.0.0.1:5555
+2026-06-24 11:44:52 | INFO     | adb_controller:auto_connect_ldplayer:153 — Auto-connected to 127.0.0.1:5555
+2026-06-24 11:44:52 | INFO     | config:save_config:26 — Config saved
+2026-06-24 11:44:53 | INFO     | adb_controller:_resolve_adb:45 — ADB found: C:\Users\samin\AppData\Local\Android\Sdk\platform-tools\adb.exe
+2026-06-24 11:44:53 | INFO     | adb_controller:_check_adb_works:67 — ADB ready: Android Debug Bridge version 1.0.41
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: attack_btn (375x102)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: attack_icon (197x190)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: end_battle_btn (222x88)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: find_match_btn (443x154)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: home_icon (1811x1002)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: loot_dark (35x36)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: loot_elixir (45x42)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: loot_elixir2 (60x63)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: loot_gold (45x42)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: loot_gold2 (63x62)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: next_btn (306x176)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: return_home_btn (244x101)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:58 —   Template loaded: Screenshot 2026-06-04 151859 (296x220)
+2026-06-24 11:44:53 | INFO     | vision:_load_all:62 — Templates ready: 13 loaded from templates
+2026-06-24 11:44:53 | INFO     | vision:_init_tesseract:170 — Tesseract OCR ready
+2026-06-24 11:44:53 | INFO     | bot_engine:__init__:68 — CoCBot initialised
+2026-06-24 11:44:53 | INFO     | bot_engine:_log:97 — Bot starting…
+2026-06-24 11:44:54 | INFO     | adb_controller:connect_device:169 — Device 127.0.0.1:5555 already connected
+2026-06-24 11:44:54 | INFO     | bot_engine:_log:97 — ADB connected — starting farm loop
+2026-06-24 11:44:54 | INFO     | bot_engine:_log:97 — ═══ Cycle 1 start ═══
+2026-06-24 11:44:54 | INFO     | bot_engine:_log:97 — Step 1: Looking for Attack icon on home screen…
+2026-06-24 11:44:55 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:44:56 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.75
+2026-06-24 11:44:56 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_icon' visible
+2026-06-24 11:44:57 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:44:58 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.75
+2026-06-24 11:44:58 | INFO     | bot_engine:_find_button:129 —   Found 'attack_icon' at (126,958) score=0.75
+2026-06-24 11:44:58 | INFO     | bot_engine:_log:97 —   Attack icon tapped
+2026-06-24 11:44:58 | INFO     | bot_engine:_log:97 —   Waiting for Find Match button…
+2026-06-24 11:44:59 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:45:00 | DEBUG    | vision:find:137 — 'find_match_btn' not found (best=0.35 < 0.35)
+2026-06-24 11:45:02 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:45:03 | DEBUG    | vision:find:134 — 'find_match_btn' → (331,804) score=0.89
+2026-06-24 11:45:03 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'find_match_btn' visible
+2026-06-24 11:45:03 | INFO     | bot_engine:_log:97 —   Step 1 complete — Find Match screen loaded
+2026-06-24 11:45:03 | INFO     | bot_engine:_log:97 — Step 2: Tapping Find a Match…
+2026-06-24 11:45:04 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:45:05 | DEBUG    | vision:find:134 — 'find_match_btn' → (331,804) score=0.89
+2026-06-24 11:45:05 | INFO     | bot_engine:_find_button:129 —   Found 'find_match_btn' at (331,804) score=0.89
+2026-06-24 11:45:05 | INFO     | bot_engine:_log:97 —   Find Match tapped — waiting for Attack! button…
+2026-06-24 11:45:06 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:45:07 | DEBUG    | vision:find:134 — 'attack_btn' → (1484,838) score=0.55
+2026-06-24 11:45:07 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_btn' visible
+2026-06-24 11:45:08 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:45:08 | DEBUG    | vision:find:134 — 'attack_btn' → (1698,967) score=0.91
+2026-06-24 11:45:08 | INFO     | bot_engine:_find_button:129 —   Found 'attack_btn' at (1698,967) score=0.91
+2026-06-24 11:45:09 | INFO     | bot_engine:_log:97 —   Attack! clicked — waiting 2s for enemy village to load…
+2026-06-24 11:45:11 | INFO     | bot_engine:_log:97 —   Step 2 complete — enemy village loaded
+2026-06-24 11:45:11 | INFO     | bot_engine:_log:97 — Step 3: Loot check (max 5 attempts)…
+2026-06-24 11:45:11 | INFO     | bot_engine:_log:97 —   Attempt 1/6
+2026-06-24 11:45:12 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:45:12 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=150: '' → 0
+2026-06-24 11:45:12 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=170: '' → 0
+2026-06-24 11:45:12 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=180: '' → 0
+2026-06-24 11:45:12 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=200: '' → 0
+2026-06-24 11:45:12 | DEBUG    | vision:_ocr_region:296 —   OCR Gold final → 0
+2026-06-24 11:45:12 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=150: '' → 0
+2026-06-24 11:45:12 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=170: '' → 0
+2026-06-24 11:45:12 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=180: '' → 0
+2026-06-24 11:45:12 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=200: '' → 0
+2026-06-24 11:45:12 | DEBUG    | vision:_ocr_region:296 —   OCR Elixir final → 0
+2026-06-24 11:45:13 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=150: '' → 0
+2026-06-24 11:45:13 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=170: '' → 0
+2026-06-24 11:45:13 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=180: '' → 0
+2026-06-24 11:45:13 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=200: '' → 0
+2026-06-24 11:45:13 | DEBUG    | vision:_ocr_region:296 —   OCR Dark final → 0
+2026-06-24 11:45:13 | INFO     | vision:read_loot:205 — OCR loot — Gold=0  Elixir=0  Dark=0
+2026-06-24 11:45:13 | INFO     | bot_engine:_log:97 —   OCR loot → Gold:0  Elixir:0  Dark:0
+2026-06-24 11:45:13 | WARNING  | bot_engine:_log:97 —   OCR zero (try 1/3) — retrying 1.5s…
+2026-06-24 11:45:16 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:45:16 | DEBUG    | vision:_ocr_region:292 —   OCR Gold thr=150: '2206' → 2206 (new best)
+2026-06-24 11:45:16 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=170: '2206' → 2206
+2026-06-24 11:45:16 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=180: '2206' → 2206
+2026-06-24 11:45:16 | DEBUG    | vision:_ocr_region:292 —   OCR Gold thr=200: '12206' → 12206 (new best)
+2026-06-24 11:45:16 | DEBUG    | vision:_ocr_region:296 —   OCR Gold final → 12206
+2026-06-24 11:45:16 | DEBUG    | vision:_ocr_region:292 —   OCR Elixir thr=150: '5222073,' → 5222073 (new best)
+2026-06-24 11:45:17 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=170: '522207' → 522207
+2026-06-24 11:45:17 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=180: '522207' → 522207
+2026-06-24 11:45:17 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=200: '522207,' → 522207
+2026-06-24 11:45:17 | DEBUG    | vision:_ocr_region:296 —   OCR Elixir final → 5222073
+2026-06-24 11:45:17 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=150: '' → 0
+2026-06-24 11:45:17 | DEBUG    | vision:_ocr_region:292 —   OCR Dark thr=170: '1964' → 1964 (new best)
+2026-06-24 11:45:17 | DEBUG    | vision:_ocr_region:292 —   OCR Dark thr=180: '1954 , 7' → 19547 (new best)
+2026-06-24 11:45:17 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=200: '19884' → 19884
+2026-06-24 11:45:17 | DEBUG    | vision:_ocr_region:296 —   OCR Dark final → 19547
+2026-06-24 11:45:17 | INFO     | vision:read_loot:205 — OCR loot — Gold=12206  Elixir=5222073  Dark=19547
+2026-06-24 11:45:17 | INFO     | bot_engine:_log:97 —   OCR loot → Gold:12206  Elixir:5222073  Dark:19547
+2026-06-24 11:45:17 | INFO     | bot_engine:_log:97 —   [PRIORITY] Elixir: 5222073 >= 100000? YES
+2026-06-24 11:45:17 | INFO     | bot_engine:_log:97 —   [PRIORITY] Dark: 19547 >= 500? YES
+2026-06-24 11:45:17 | SUCCESS  | bot_engine:_log:97 —   Loot matched! [PRIORITY] ATTACK: Elixir(5222073>=100000), Dark(19547>=500)
+2026-06-24 11:45:17 | INFO     | bot_engine:_log:97 —   Step 3 complete — starting deploy
+2026-06-24 11:45:17 | INFO     | bot_engine:_log:97 — Step 4: Starting troop deployment…
+2026-06-24 11:45:17 | INFO     | troop_detector:_log:167 — Starting troop deployment (2 troop type(s))…
+2026-06-24 11:45:17 | INFO     | troop_detector:_log:167 —   Pass 1 — scanning troop bar…
+2026-06-24 11:45:19 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:45:19 | INFO     | troop_detector:_find_deploy_zone_on_screen:210 — Deploy zone found at (754,669) conf=0.53
+2026-06-24 11:45:19 | INFO     | troop_detector:_deploy_zones:229 — Deploy zone image matched — 9 spread points around (754,669)
+2026-06-24 11:45:20 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 129.5 → AVAILABLE
+2026-06-24 11:45:20 | INFO     | troop_detector:_log:167 —   Deploying 'Screenshot 2026 06 24 114004' until gray…
+2026-06-24 11:45:22 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:45:22 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 129.6 → AVAILABLE
+2026-06-24 11:45:24 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:45:24 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 129.6 → AVAILABLE
+2026-06-24 11:45:26 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:45:26 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 0.0 → EMPTY
+2026-06-24 11:45:26 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 24 114004': gray after 9 taps — done
+2026-06-24 11:45:27 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:45:27 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,985): 159.9 → AVAILABLE
+2026-06-24 11:45:28 | INFO     | troop_detector:_log:167 —   Deploying 'Screenshot 2026 06 13 125601' until gray…
+2026-06-24 11:45:30 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:45:30 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,985): 156.3 → AVAILABLE
+2026-06-24 11:45:32 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:45:32 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,985): 0.0 → EMPTY
+2026-06-24 11:45:32 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 13 125601': gray after 6 taps — done
+2026-06-24 11:45:33 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:45:33 | INFO     | troop_detector:_log:167 —   Pass 1 done — rescanning for remaining troops…
+2026-06-24 11:45:33 | INFO     | troop_detector:_log:167 —   Pass 2 — scanning troop bar…
+2026-06-24 11:45:34 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-24 11:45:35 | INFO     | troop_detector:_find_deploy_zone_on_screen:210 — Deploy zone found at (90,332) conf=0.55
+2026-06-24 11:45:35 | INFO     | troop_detector:_deploy_zones:229 — Deploy zone image matched — 9 spread points around (90,332)
+2026-06-24 11:45:35 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 0.0 → EMPTY
+2026-06-24 11:45:35 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 24 114004': gray — already empty, skip
+2026-06-24 11:45:36 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,984): 0.0 → EMPTY
+2026-06-24 11:45:36 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 13 125601': gray — already empty, skip
+2026-06-24 11:45:36 | INFO     | troop_detector:_log:167 —   All slots gray — deployment complete!
+2026-06-24 11:45:36 | INFO     | troop_detector:_log:167 — Troop deployment finished
+2026-06-24 11:45:36 | INFO     | bot_engine:_log:97 —   Step 4 complete — all troops deployed
+2026-06-24 11:45:36 | INFO     | bot_engine:_log:97 — Step 5: Battle in progress — checking Return Home every 7s (max 180s)…
+2026-06-24 11:45:36 | INFO     | bot_engine:_log:97 —   Check #1 at 0s — looking for Return Home…
+2026-06-24 11:45:37 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:45:38 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.47 < 0.60)
+2026-06-24 11:45:45 | INFO     | bot_engine:_log:97 —   Check #2 at 9s — looking for Return Home…
+2026-06-24 11:45:46 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:45:47 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.47 < 0.60)
+2026-06-24 11:45:54 | INFO     | bot_engine:_log:97 —   Check #3 at 18s — looking for Return Home…
+2026-06-24 11:45:55 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:45:56 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.47 < 0.60)
+2026-06-24 11:46:03 | INFO     | bot_engine:_log:97 —   Check #4 at 27s — looking for Return Home…
+2026-06-24 11:46:04 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:46:05 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.47 < 0.60)
+2026-06-24 11:46:12 | INFO     | bot_engine:_log:97 —   Check #5 at 36s — looking for Return Home…
+2026-06-24 11:46:14 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:46:14 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.47 < 0.60)
+2026-06-24 11:46:21 | INFO     | bot_engine:_log:97 —   Check #6 at 45s — looking for Return Home…
+2026-06-24 11:46:22 | INFO     | config:save_config:26 — Config saved
+2026-06-24 11:46:23 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:46:23 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.47 < 0.60)
+2026-06-24 11:46:25 | INFO     | config:save_config:26 — Config saved
+2026-06-24 11:46:30 | INFO     | bot_engine:_log:97 —   Check #7 at 54s — looking for Return Home…
+2026-06-24 11:46:32 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:46:33 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.47 < 0.60)
+2026-06-24 11:46:40 | INFO     | bot_engine:_log:97 —   Check #8 at 63s — looking for Return Home…
+2026-06-24 11:46:41 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:46:42 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.47 < 0.60)
+2026-06-24 11:46:49 | INFO     | bot_engine:_log:97 —   Check #9 at 73s — looking for Return Home…
+2026-06-24 11:46:50 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:46:51 | DEBUG    | vision:find:134 — 'return_home_btn' → (960,925) score=0.95
+2026-06-24 11:46:51 | INFO     | bot_engine:_log:97 —   Return Home found at 73s (score=0.95) — tapping!
+2026-06-24 11:46:51 | INFO     | bot_engine:_log:97 —   Waiting for home screen to load…
+2026-06-24 11:46:53 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:46:53 | DEBUG    | vision:find:134 — 'attack_icon' → (601,324) score=0.52
+2026-06-24 11:46:53 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_icon' visible
+2026-06-24 11:46:53 | INFO     | bot_engine:_log:97 —   Step 5 complete — home screen confirmed
+2026-06-24 11:46:53 | INFO     | bot_engine:_log:97 — ═══ Cycle 1 complete ═══
+2026-06-24 11:46:53 | INFO     | bot_engine:_log:97 — ═══ Cycle 2 start ═══
+2026-06-24 11:46:53 | INFO     | bot_engine:_log:97 — Step 1: Looking for Attack icon on home screen…
+2026-06-24 11:46:55 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-24 11:46:56 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.75
+2026-06-24 11:46:56 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_icon' visible
+2026-06-24 11:46:56 | INFO     | bot_engine:_log:97 — Bot stopped
+2026-06-26 20:43:20 | INFO     | __main__:main:32 — ============================================================
+2026-06-26 20:43:20 | INFO     | __main__:main:33 — CoC Auto Farming Bot starting
+2026-06-26 20:43:20 | INFO     | __main__:main:34 — ============================================================
+2026-06-26 20:43:21 | INFO     | config:load_config:16 — Config loaded from config.yaml
+2026-06-26 20:44:58 | INFO     | adb_controller:_resolve_adb:45 — ADB found: C:\Users\samin\AppData\Local\Android\Sdk\platform-tools\adb.exe
+2026-06-26 20:44:58 | INFO     | adb_controller:_check_adb_works:67 — ADB ready: Android Debug Bridge version 1.0.41
+2026-06-26 20:44:58 | INFO     | adb_controller:auto_connect_ldplayer:130 — Starting auto-connect to LDPlayer...
+2026-06-26 20:44:58 | INFO     | adb_controller:auto_connect_ldplayer:133 — Cleaning up existing processes...
+2026-06-26 20:44:58 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: powershell.exe (PID: 1960)
+2026-06-26 20:44:58 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: adb.exe (PID: 4648)
+2026-06-26 20:44:58 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: cmd.exe (PID: 18700)
+2026-06-26 20:44:58 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: cmd.exe (PID: 20052)
+2026-06-26 20:44:58 | DEBUG    | adb_controller:kill_all_terminals:88 — Terminated: cmd.exe (PID: 22116)
+2026-06-26 20:44:59 | INFO     | adb_controller:kill_all_terminals:95 — Killed 5 terminal/ADB processes
+2026-06-26 20:45:01 | INFO     | adb_controller:auto_connect_ldplayer:138 — Starting ADB server...
+2026-06-26 20:45:04 | INFO     | adb_controller:auto_connect_ldplayer:146 — Scanning for LDPlayer emulator...
+2026-06-26 20:45:05 | INFO     | adb_controller:find_ldplayer_adb:120 — Found LDPlayer at 127.0.0.1:5555
+2026-06-26 20:45:05 | INFO     | adb_controller:auto_connect_ldplayer:153 — Auto-connected to 127.0.0.1:5555
+2026-06-26 20:45:05 | INFO     | config:save_config:26 — Config saved
+2026-06-26 20:45:24 | INFO     | config:save_config:26 — Config saved
+2026-06-26 20:45:25 | INFO     | config:save_config:26 — Config saved
+2026-06-26 20:45:25 | INFO     | config:save_config:26 — Config saved
+2026-06-26 20:45:30 | INFO     | config:save_config:26 — Config saved
+2026-06-26 20:45:39 | INFO     | config:save_config:26 — Config saved
+2026-06-26 20:45:40 | INFO     | config:save_config:26 — Config saved
+2026-06-26 20:45:41 | INFO     | config:save_config:26 — Config saved
+2026-06-26 20:45:48 | INFO     | config:save_config:26 — Config saved
+2026-06-26 20:45:53 | INFO     | adb_controller:_resolve_adb:45 — ADB found: C:\Users\samin\AppData\Local\Android\Sdk\platform-tools\adb.exe
+2026-06-26 20:45:53 | INFO     | adb_controller:_check_adb_works:67 — ADB ready: Android Debug Bridge version 1.0.41
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: attack_btn (375x102)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: attack_icon (197x190)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: end_battle_btn (222x88)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: find_match_btn (443x154)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: home_icon (1811x1002)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: loot_dark (35x36)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: loot_elixir2 (60x63)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: loot_gold2 (63x62)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: next_btn (306x176)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: return_home_btn (244x101)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:58 —   Template loaded: Screenshot 2026-06-04 151859 (296x220)
+2026-06-26 20:45:53 | INFO     | vision:_load_all:62 — Templates ready: 11 loaded from templates
+2026-06-26 20:45:54 | INFO     | vision:_init_tesseract:170 — Tesseract OCR ready
+2026-06-26 20:45:54 | INFO     | bot_engine:__init__:68 — CoCBot initialised
+2026-06-26 20:45:54 | INFO     | bot_engine:_log:97 — Bot starting…
+2026-06-26 20:45:54 | INFO     | adb_controller:connect_device:169 — Device 127.0.0.1:5555 already connected
+2026-06-26 20:45:54 | INFO     | bot_engine:_log:97 — ADB connected — starting farm loop
+2026-06-26 20:45:54 | INFO     | bot_engine:_log:97 — ═══ Cycle 1 start ═══
+2026-06-26 20:45:54 | INFO     | bot_engine:_log:97 — Step 1: Looking for Attack icon on home screen…
+2026-06-26 20:45:55 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:45:56 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.73
+2026-06-26 20:45:56 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_icon' visible
+2026-06-26 20:45:57 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:45:58 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.73
+2026-06-26 20:45:58 | INFO     | bot_engine:_find_button:129 —   Found 'attack_icon' at (126,958) score=0.73
+2026-06-26 20:45:59 | INFO     | bot_engine:_log:97 —   Attack icon tapped
+2026-06-26 20:45:59 | INFO     | bot_engine:_log:97 —   Waiting for Find Match button…
+2026-06-26 20:46:00 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:01 | DEBUG    | vision:find:137 — 'find_match_btn' not found (best=0.34 < 0.35)
+2026-06-26 20:46:03 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:03 | DEBUG    | vision:find:134 — 'find_match_btn' → (331,804) score=0.89
+2026-06-26 20:46:03 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'find_match_btn' visible
+2026-06-26 20:46:03 | INFO     | bot_engine:_log:97 —   Step 1 complete — Find Match screen loaded
+2026-06-26 20:46:03 | INFO     | bot_engine:_log:97 — Step 2: Tapping Find a Match…
+2026-06-26 20:46:05 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:05 | DEBUG    | vision:find:134 — 'find_match_btn' → (331,804) score=0.89
+2026-06-26 20:46:05 | INFO     | bot_engine:_find_button:129 —   Found 'find_match_btn' at (331,804) score=0.89
+2026-06-26 20:46:05 | INFO     | bot_engine:_log:97 —   Find Match tapped — waiting for Attack! button…
+2026-06-26 20:46:07 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:07 | DEBUG    | vision:find:134 — 'attack_btn' → (1764,65) score=0.49
+2026-06-26 20:46:07 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_btn' visible
+2026-06-26 20:46:08 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:09 | DEBUG    | vision:find:134 — 'attack_btn' → (1698,967) score=0.91
+2026-06-26 20:46:09 | INFO     | bot_engine:_find_button:129 —   Found 'attack_btn' at (1698,967) score=0.91
+2026-06-26 20:46:09 | INFO     | bot_engine:_log:97 —   Attack! clicked — waiting 2s for enemy village to load…
+2026-06-26 20:46:11 | INFO     | bot_engine:_log:97 —   Step 2 complete — enemy village loaded
+2026-06-26 20:46:11 | INFO     | bot_engine:_log:97 — Step 3: Loot check (max 5 attempts)…
+2026-06-26 20:46:11 | INFO     | bot_engine:_log:97 —   Attempt 1/6
+2026-06-26 20:46:12 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:12 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=150: '' → 0
+2026-06-26 20:46:13 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=170: '' → 0
+2026-06-26 20:46:13 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=180: '' → 0
+2026-06-26 20:46:13 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=200: '' → 0
+2026-06-26 20:46:13 | DEBUG    | vision:_ocr_region:296 —   OCR Gold final → 0
+2026-06-26 20:46:13 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=150: '' → 0
+2026-06-26 20:46:13 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=170: '' → 0
+2026-06-26 20:46:13 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=180: '' → 0
+2026-06-26 20:46:13 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=200: '' → 0
+2026-06-26 20:46:13 | DEBUG    | vision:_ocr_region:296 —   OCR Elixir final → 0
+2026-06-26 20:46:13 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=150: '' → 0
+2026-06-26 20:46:14 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=170: '' → 0
+2026-06-26 20:46:14 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=180: '' → 0
+2026-06-26 20:46:14 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=200: '' → 0
+2026-06-26 20:46:14 | DEBUG    | vision:_ocr_region:296 —   OCR Dark final → 0
+2026-06-26 20:46:14 | INFO     | vision:read_loot:205 — OCR loot — Gold=0  Elixir=0  Dark=0
+2026-06-26 20:46:14 | INFO     | bot_engine:_log:97 —   OCR loot → Gold:0  Elixir:0  Dark:0
+2026-06-26 20:46:14 | WARNING  | bot_engine:_log:97 —   OCR zero (try 1/3) — retrying 1.5s…
+2026-06-26 20:46:17 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:17 | DEBUG    | vision:_ocr_region:292 —   OCR Gold thr=150: '485604' → 485604 (new best)
+2026-06-26 20:46:17 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=170: '485604,' → 485604
+2026-06-26 20:46:17 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=180: '485604' → 485604
+2026-06-26 20:46:17 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=200: '485604' → 485604
+2026-06-26 20:46:17 | DEBUG    | vision:_ocr_region:296 —   OCR Gold final → 485604
+2026-06-26 20:46:17 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=150: '' → 0
+2026-06-26 20:46:17 | DEBUG    | vision:_ocr_region:292 —   OCR Elixir thr=170: '277467' → 277467 (new best)
+2026-06-26 20:46:18 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=180: '277467' → 277467
+2026-06-26 20:46:18 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=200: '277467' → 277467
+2026-06-26 20:46:18 | DEBUG    | vision:_ocr_region:296 —   OCR Elixir final → 277467
+2026-06-26 20:46:18 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=150: '' → 0
+2026-06-26 20:46:18 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=170: '' → 0
+2026-06-26 20:46:18 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=180: '' → 0
+2026-06-26 20:46:18 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=200: '' → 0
+2026-06-26 20:46:18 | DEBUG    | vision:_ocr_region:296 —   OCR Dark final → 0
+2026-06-26 20:46:18 | INFO     | vision:read_loot:205 — OCR loot — Gold=485604  Elixir=277467  Dark=0
+2026-06-26 20:46:18 | INFO     | bot_engine:_log:97 —   OCR loot → Gold:485604  Elixir:277467  Dark:0
+2026-06-26 20:46:18 | INFO     | bot_engine:_log:97 —   [ALL] Gold: 485604 >= 100000? YES
+2026-06-26 20:46:18 | INFO     | bot_engine:_log:97 —   [ALL] Elixir: 277467 >= 100000? YES
+2026-06-26 20:46:18 | INFO     | bot_engine:_log:97 —   [ALL] Dark: 0 >= 500? NO
+2026-06-26 20:46:18 | WARNING  | bot_engine:_log:97 —   No match — [ALL] SKIP: Dark(0<500)
+2026-06-26 20:46:19 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:20 | DEBUG    | vision:find:134 — 'next_btn' → (1749,766) score=0.84
+2026-06-26 20:46:20 | INFO     | bot_engine:_find_button:129 —   Found 'next_btn' at (1749,766) score=0.84
+2026-06-26 20:46:21 | INFO     | bot_engine:_log:97 —   Next tapped — waiting 4s for new village to load…
+2026-06-26 20:46:25 | INFO     | bot_engine:_log:97 —   Attempt 2/6
+2026-06-26 20:46:26 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:26 | DEBUG    | vision:_ocr_region:292 —   OCR Gold thr=150: '315453' → 315453 (new best)
+2026-06-26 20:46:26 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=170: '315453' → 315453
+2026-06-26 20:46:26 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=180: '315453' → 315453
+2026-06-26 20:46:26 | DEBUG    | vision:_ocr_region:294 —   OCR Gold thr=200: '315453' → 315453
+2026-06-26 20:46:26 | DEBUG    | vision:_ocr_region:296 —   OCR Gold final → 315453
+2026-06-26 20:46:26 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=150: '' → 0
+2026-06-26 20:46:27 | DEBUG    | vision:_ocr_region:292 —   OCR Elixir thr=170: '237322' → 237322 (new best)
+2026-06-26 20:46:27 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=180: '237322' → 237322
+2026-06-26 20:46:27 | DEBUG    | vision:_ocr_region:294 —   OCR Elixir thr=200: '237322' → 237322
+2026-06-26 20:46:27 | DEBUG    | vision:_ocr_region:296 —   OCR Elixir final → 237322
+2026-06-26 20:46:27 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=150: '' → 0
+2026-06-26 20:46:27 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=170: '' → 0
+2026-06-26 20:46:27 | DEBUG    | vision:_ocr_region:294 —   OCR Dark thr=180: '' → 0
+2026-06-26 20:46:27 | DEBUG    | vision:_ocr_region:292 —   OCR Dark thr=200: '1028' → 1028 (new best)
+2026-06-26 20:46:27 | DEBUG    | vision:_ocr_region:296 —   OCR Dark final → 1028
+2026-06-26 20:46:27 | INFO     | vision:read_loot:205 — OCR loot — Gold=315453  Elixir=237322  Dark=1028
+2026-06-26 20:46:27 | INFO     | bot_engine:_log:97 —   OCR loot → Gold:315453  Elixir:237322  Dark:1028
+2026-06-26 20:46:27 | INFO     | bot_engine:_log:97 —   [ALL] Gold: 315453 >= 100000? YES
+2026-06-26 20:46:27 | INFO     | bot_engine:_log:97 —   [ALL] Elixir: 237322 >= 100000? YES
+2026-06-26 20:46:27 | INFO     | bot_engine:_log:97 —   [ALL] Dark: 1028 >= 500? YES
+2026-06-26 20:46:27 | SUCCESS  | bot_engine:_log:97 —   Loot matched! [ALL] ATTACK: Gold(315453>=100000), Elixir(237322>=100000), Dark(1028>=500)
+2026-06-26 20:46:27 | INFO     | bot_engine:_log:97 —   Step 3 complete — starting deploy
+2026-06-26 20:46:27 | INFO     | bot_engine:_log:97 — Step 4: Starting troop deployment…
+2026-06-26 20:46:27 | INFO     | troop_detector:_log:167 — Starting troop deployment (2 troop type(s))…
+2026-06-26 20:46:27 | INFO     | troop_detector:_log:167 —   Pass 1 — scanning troop bar…
+2026-06-26 20:46:29 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-26 20:46:29 | INFO     | troop_detector:_find_deploy_zone_on_screen:210 — Deploy zone found at (348,234) conf=0.41
+2026-06-26 20:46:29 | INFO     | troop_detector:_deploy_zones:251 — Deploy zone DETECTED at (348,234) — 9 spread points
+2026-06-26 20:46:30 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 129.5 → AVAILABLE
+2026-06-26 20:46:30 | INFO     | troop_detector:_log:167 —   Deploying 'Screenshot 2026 06 24 114004' until gray…
+2026-06-26 20:46:34 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-26 20:46:34 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 0.2 → EMPTY
+2026-06-26 20:46:34 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 24 114004': gray after 12 taps — done
+2026-06-26 20:46:35 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-26 20:46:35 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,985): 159.5 → AVAILABLE
+2026-06-26 20:46:36 | INFO     | troop_detector:_log:167 —   Deploying 'Screenshot 2026 06 13 125601' until gray…
+2026-06-26 20:46:39 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-26 20:46:39 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,985): 0.0 → EMPTY
+2026-06-26 20:46:39 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 13 125601': gray after 12 taps — done
+2026-06-26 20:46:40 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-26 20:46:40 | INFO     | troop_detector:_log:167 —   Pass 1 done — rescanning for remaining troops…
+2026-06-26 20:46:40 | INFO     | troop_detector:_log:167 —   Pass 2 — scanning troop bar…
+2026-06-26 20:46:42 | DEBUG    | adb_controller:screenshot_np:305 — Screenshot in memory: 1920x1080
+2026-06-26 20:46:43 | INFO     | troop_detector:_find_deploy_zone_on_screen:210 — Deploy zone found at (348,234) conf=0.41
+2026-06-26 20:46:43 | INFO     | troop_detector:_deploy_zones:251 — Deploy zone DETECTED at (348,234) — 9 spread points
+2026-06-26 20:46:43 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (213,1002): 0.0 → EMPTY
+2026-06-26 20:46:43 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 24 114004': gray — already empty, skip
+2026-06-26 20:46:43 | DEBUG    | troop_detector:is_slot_colorful:64 —   Saturation at (359,984): 0.0 → EMPTY
+2026-06-26 20:46:43 | INFO     | troop_detector:_log:167 —   'Screenshot 2026 06 13 125601': gray — already empty, skip
+2026-06-26 20:46:43 | INFO     | troop_detector:_log:167 —   All slots gray — deployment complete!
+2026-06-26 20:46:43 | INFO     | troop_detector:_log:167 — Troop deployment finished
+2026-06-26 20:46:43 | INFO     | bot_engine:_log:97 —   Step 4 complete — all troops deployed
+2026-06-26 20:46:43 | INFO     | bot_engine:_log:97 — Step 5: Battle in progress — checking Return Home every 7s (max 180s)…
+2026-06-26 20:46:43 | INFO     | bot_engine:_log:97 —   Check #1 at 0s — looking for Return Home…
+2026-06-26 20:46:44 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:45 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:46:52 | INFO     | bot_engine:_log:97 —   Check #2 at 9s — looking for Return Home…
+2026-06-26 20:46:53 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:46:54 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:47:01 | INFO     | bot_engine:_log:97 —   Check #3 at 18s — looking for Return Home…
+2026-06-26 20:47:03 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:47:03 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:47:10 | INFO     | bot_engine:_log:97 —   Check #4 at 27s — looking for Return Home…
+2026-06-26 20:47:12 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:47:13 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:47:20 | INFO     | bot_engine:_log:97 —   Check #5 at 36s — looking for Return Home…
+2026-06-26 20:47:21 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:47:22 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:47:29 | INFO     | bot_engine:_log:97 —   Check #6 at 45s — looking for Return Home…
+2026-06-26 20:47:30 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:47:31 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:47:38 | INFO     | bot_engine:_log:97 —   Check #7 at 55s — looking for Return Home…
+2026-06-26 20:47:39 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:47:40 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:47:47 | INFO     | bot_engine:_log:97 —   Check #8 at 64s — looking for Return Home…
+2026-06-26 20:47:48 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:47:49 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:47:56 | INFO     | bot_engine:_log:97 —   Check #9 at 73s — looking for Return Home…
+2026-06-26 20:47:58 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:47:59 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:48:06 | INFO     | bot_engine:_log:97 —   Check #10 at 82s — looking for Return Home…
+2026-06-26 20:48:07 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:48:08 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:48:15 | INFO     | bot_engine:_log:97 —   Check #11 at 92s — looking for Return Home…
+2026-06-26 20:48:16 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:48:17 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:48:24 | INFO     | bot_engine:_log:97 —   Check #12 at 101s — looking for Return Home…
+2026-06-26 20:48:26 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:48:27 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.43 < 0.60)
+2026-06-26 20:48:34 | INFO     | bot_engine:_log:97 —   Check #13 at 110s — looking for Return Home…
+2026-06-26 20:48:35 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:48:36 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.44 < 0.60)
+2026-06-26 20:48:43 | INFO     | bot_engine:_log:97 —   Check #14 at 120s — looking for Return Home…
+2026-06-26 20:48:44 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:48:45 | DEBUG    | vision:find:137 — 'return_home_btn' not found (best=0.44 < 0.60)
+2026-06-26 20:48:52 | INFO     | bot_engine:_log:97 —   Check #15 at 129s — looking for Return Home…
+2026-06-26 20:48:53 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:48:54 | DEBUG    | vision:find:134 — 'return_home_btn' → (960,925) score=0.95
+2026-06-26 20:48:54 | INFO     | bot_engine:_log:97 —   Return Home found at 129s (score=0.95) — tapping!
+2026-06-26 20:48:55 | INFO     | bot_engine:_log:97 —   Waiting for home screen to load…
+2026-06-26 20:48:56 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:48:57 | DEBUG    | vision:find:134 — 'attack_icon' → (600,325) score=0.53
+2026-06-26 20:48:57 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_icon' visible
+2026-06-26 20:48:57 | INFO     | bot_engine:_log:97 —   Step 5 complete — home screen confirmed
+2026-06-26 20:48:57 | INFO     | bot_engine:_log:97 — ═══ Cycle 1 complete ═══
+2026-06-26 20:48:57 | INFO     | bot_engine:_log:97 — ═══ Cycle 2 start ═══
+2026-06-26 20:48:57 | INFO     | bot_engine:_log:97 — Step 1: Looking for Attack icon on home screen…
+2026-06-26 20:48:59 | DEBUG    | adb_controller:screenshot:283 — Screenshot saved: screenshot.png (1920x1080)
+2026-06-26 20:48:59 | DEBUG    | vision:find:134 — 'attack_icon' → (126,958) score=0.77
+2026-06-26 20:48:59 | INFO     | bot_engine:_wait_until_visible:148 —   Confirmed: 'attack_icon' visible
+2026-06-26 20:48:59 | INFO     | bot_engine:_log:97 — Bot stopped
